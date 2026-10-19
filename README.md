@@ -31,16 +31,18 @@ npm run smoke  # in-process end-to-end smoke test
 
 ## Environment variables (optional)
 
-Copy `.env.example` to `.env` and fill in values to enable Granite on watsonx.ai.
+Copy `.env.example` to `.env` and fill in values to enable the watsonx.ai chat extractor.
 Without these keys the agent uses the built-in rule-based extractor — no functionality is lost.
 
-| Variable | Purpose |
-|---|---|
-| `WATSONX_APIKEY` | IBM Cloud API key |
-| `WATSONX_PROJECT_ID` | watsonx.ai project ID |
-| `WATSONX_URL` | watsonx.ai endpoint URL |
-| `WATSONX_MODEL_ID` | Model ID (default: `ibm/granite-3-8b-instruct`) |
-| `PORT` | Server port (default: 3000) |
+| Variable | Default | Purpose |
+|---|---|---|
+| `WATSONX_APIKEY` | *(required)* | IBM Cloud API key |
+| `WATSONX_PROJECT_ID` | *(required)* | watsonx.ai project ID |
+| `WATSONX_URL` | `https://eu-de.ml.cloud.ibm.com` | watsonx.ai endpoint URL |
+| `WATSONX_MODEL_ID` | `mistralai/mistral-small-3-1-24b-instruct-2503` | Model ID (use `ibm/granite-4-h-small` for the cheaper IBM alternative) |
+| `PORT` | `3000` | Server port |
+
+See [`docs/MODEL_EVALUATION.md`](docs/MODEL_EVALUATION.md) for the model comparison results.
 
 ## Project layout
 

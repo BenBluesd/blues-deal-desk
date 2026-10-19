@@ -11,5 +11,6 @@ Screenshots of the IBM Bob task-session summaries for team **Blues Distribution*
 | `BluesDistribution_task05_orchestrate-agent_summary.png` | TASK-04: Python engine port, parity tests, watsonx Orchestrate agent | 10.25 |
 | `BluesDistribution_task06_live-site-demo_summary.png` | TASK-05: live API and hidden desk page on bluesd.co.il, `submit_request` tool | 6.06 |
 | `BluesDistribution_task07_language-endcustomer-fix_summary.png` | TASK-06: language enforced in the tool, end customer passed | 3.45 |
+| `BluesDistribution_task08_watsonx-model-eval_summary.png` | TASK-07: watsonx.ai chat API (Mistral Small) for the local agent, model evaluation doc | 3.45 |
 
-Total: about 36.6 Bobcoins.
+Total: about 40.1 Bobcoins.

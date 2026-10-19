@@ -28,7 +28,7 @@ Language is the AI's job; correctness is the engine's job. The model never inven
 
 ## Built with IBM Bob
 
-We built the whole project in IBM Bob, in seven focused tasks, for about 37 Bobcoins (screenshots in `bob_sessions/`). It includes:
+We built the whole project in IBM Bob, in eight focused tasks, for about 40 Bobcoins (screenshots in `bob_sessions/`). It includes:
 
 - a local demo with a reseller chat and a salesperson desk;
 - the Python engine port with parity tests;
@@ -48,3 +48,5 @@ A request made in the Orchestrate chat appears on that desk page within about a 
 ## Path to production
 
 The engine and the demo API already run on our live hosting. Next come real ePricer pricing behind the salesperson's approval, CRM and login integration, and more IBM lines (Power, SAN, tape). See `docs/PATH_TO_PRODUCTION.md`.
+
+Model selection is documented in [`docs/MODEL_EVALUATION.md`](docs/MODEL_EVALUATION.md).
