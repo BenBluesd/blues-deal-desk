@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Blues Deal Desk – Salesperson Desk (Demo)</title>
+  <style>
+    :root {
+      --navy: #0a2850;
+      --blue: #1565c0;
+      --blue-light: #e8f0fe;
+      --accent: #1976d2;
+      --white: #ffffff;
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --border: #dde3ed;
+      --text: #1a2030;
+      --muted: #5a6580;
+      --auto: #2e7d32;
+      --review: #e65100;
+      --custom: #6a1b9a;
+      --success: #2e7d32;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-banner {
+      background: #fff3cd;
+      color: #856404;
+      text-align: center;
+      padding: 5px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #ffc107;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 18px; font-weight: 700; }
+    header a { color: rgba(255,255,255,0.75); font-size: 13px; text-decoration: none; }
+    header a:hover { color: var(--white); }
+    .pending-count {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .sidebar-header h2 { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .refresh-btn {
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 3px 8px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .refresh-btn:hover { background: var(--bg); }
+
+    .req-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .req-item:hover { background: var(--blue-light); }
+    .req-item.active { background: var(--blue-light); border-left: 3px solid var(--blue); }
+    .req-item .ri-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; }
+    .req-item .ri-reseller { font-weight: 600; font-size: 13px; }
+    .req-item .ri-time { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .req-item .ri-ref { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .req-item .ri-meta { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-auto { background: #e8f5e9; color: var(--auto); }
+    .badge-review { background: #fff3e0; color: var(--review); }
+    .badge-custom { background: #f3e5f5; color: var(--custom); }
+    .badge-new { background: #e3f2fd; color: var(--accent); }
+    .badge-approved { background: #e8f5e9; color: var(--success); }
+    .badge-asked { background: #fce4ec; color: #880e4f; }
+    .badge-opp { background: #fce4ec; color: #880e4f; font-size: 10px; padding: 1px 5px; }
+
+    .empty-list { padding: 24px 16px; color: var(--muted); font-size: 13px; text-align: center; }
+
+    .detail {
+      overflow-y: auto;
+      padding: 0;
+      background: var(--bg);
+    }
+    .detail-inner { max-width: 840px; margin: 0 auto; padding: 20px 24px 40px; }
+    .detail-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .section-title {
+      padding: 10px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+    .section-body { padding: 14px 16px; }
+
+    .kv-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 6px 10px;
+    }
+    .kv-label { color: var(--muted); font-size: 13px; }
+    .kv-value { font-size: 13px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 7px 10px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.4px; }
+    td { padding: 7px 10px; border-bottom: 1px solid #f0f2f6; }
+    tr:last-child td { border-bottom: none; }
+    .feature-code { font-family: monospace; font-size: 12px; background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+    .not-in-mock { color: var(--muted); font-size: 11px; font-style: italic; }
+
+    .price-total { font-size: 15px; font-weight: 700; color: var(--blue); }
+    .mock-badge {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+
+    .verify-item { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f2f6; font-size: 13px; }
+    .verify-item:last-child { border-bottom: none; }
+    .verify-icon { flex-shrink: 0; font-size: 16px; }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .btn {
+      padding: 9px 18px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-approve { background: var(--success); color: var(--white); }
+    .btn-ask { background: var(--accent); color: var(--white); }
+    .btn-edit { background: var(--muted); color: var(--white); }
+
+    .action-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .action-panel.visible { display: block; }
+    .action-panel label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .action-panel textarea, .action-panel input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+    }
+    .action-panel textarea:focus, .action-panel input:focus { border-color: var(--accent); }
+    .action-panel .panel-btns { display: flex; gap: 8px; margin-top: 10px; }
+    .btn-sm { padding: 6px 14px; font-size: 13px; }
+
+    .status-msg { padding: 10px 14px; border-radius: 7px; font-size: 13px; margin-bottom: 16px; }
+    .status-msg.ok { background: #e8f5e9; color: var(--success); border: 1px solid #a5d6a7; }
+    .status-msg.err { background: #fce4ec; color: #c62828; border: 1px solid #ef9a9a; }
+
+    .sidebar::-webkit-scrollbar, .detail::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb, .detail::-webkit-scrollbar-thumb { background: #c5cdd8; border-radius: 3px; }
+
+    @media (max-width: 640px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { max-height: 220px; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Demo: invented companies and mock prices · All data is fictional</div>
+
+  <header>
+    <h1>Blues Deal Desk – Salesperson Desk <span class="pending-count" id="pendingCount" style="display:none"></span></h1>
+    <a href="https://bluesd.co.il/">← Blues site</a>
+  </header>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Requests</h2>
+        <button class="refresh-btn" id="refreshBtn">↻ Refresh</button>
+      </div>
+      <div id="reqList"><div class="empty-list">Loading…</div></div>
+    </div>
+
+    <div class="detail" id="detailPane">
+      <div class="detail-placeholder">Select a request to review</div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'https://bluesd.co.il/api/bob-demo/requests';
+    let requests = [];
+    let currentId = null;
+
+    async function loadRequests() {
+      try {
+        const r = await fetch(API);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        requests = await r.json();
+        renderList();
+        if (currentId) {
+          const still = requests.find(x => x.id === currentId);
+          if (still) { /* keep detail open, don't re-fetch */ }
+        }
+      } catch (e) {
+        document.getElementById('reqList').innerHTML =
+          '<div class="empty-list" style="color:#c62828">Error loading: ' + esc(e.message) + '</div>';
+      }
+    }
+
+    function renderList() {
+      const el = document.getElementById('reqList');
+
+      const newCount = requests.filter(r => r.status === 'new').length;
+      const countEl = document.getElementById('pendingCount');
+      if (countEl) {
+        if (newCount > 0) {
+          countEl.textContent = newCount + ' new';
+          countEl.style.display = '';
+        } else {
+          countEl.style.display = 'none';
+        }
+      }
+
+      if (!requests.length) {
+        el.innerHTML = '<div class="empty-list">No requests yet.</div>';
+        return;
+      }
+      el.innerHTML = requests.map(r => {
+        const route = r.route || '—';
+        const ts = r.created ? new Date(r.created).toLocaleString() : '';
+        const statusBadge = `<span class="badge badge-${esc(r.status || 'new')}">${esc(r.status || 'new')}</span>`;
+        const routeBadge = `<span class="badge badge-${esc(route)}">${esc(route)}</span>`;
+        const companyName = esc(r.reseller || 'Unknown');
+        const endCustomer = r.endCustomer ? `<span style="font-size:11px;color:var(--muted)"> · ${esc(r.endCustomer)}</span>` : '';
+        return `<div class="req-item${r.id === currentId ? ' active' : ''}" data-id="${esc(r.id)}">
+          <div class="ri-top">
+            <span class="ri-reseller">${companyName}${endCustomer}</span>
+            <span class="ri-time">${esc(ts.split(',')[1] || ts)}</span>
+          </div>
+          <div class="ri-ref">${esc(r.ref || r.id)}</div>
+          <div class="ri-meta">${routeBadge}${statusBadge}</div>
+        </div>`;
+      }).join('');
+
+      el.querySelectorAll('.req-item[data-id]').forEach(item => {
+        item.addEventListener('click', () => selectRequest(item.dataset.id));
+      });
+    }
+
+    async function selectRequest(id) {
+      currentId = id;
+      renderList();
+      document.getElementById('detailPane').innerHTML = '<div class="detail-placeholder">Loading…</div>';
+      try {
+        const r = await fetch(API + '/' + encodeURIComponent(id));
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const rec = await r.json();
+        renderDetail(rec);
+      } catch (e) {
+        document.getElementById('detailPane').innerHTML =
+          '<div class="detail-placeholder" style="color:#c62828">Error: ' + esc(e.message) + '</div>';
+      }
+    }
+
+    function renderDetail(rec) {
+      const sizing = rec.sizing || {};
+      const rec_ = sizing.recommendation || {};
+      const econf = sizing.econfig || {};
+      const pub = sizing.public || {};
+      const price = rec.mockPrice || {};
+      const route = sizing.route || '—';
+
+      let html = '<div class="detail-inner">';
+
+      if (rec.status === 'approved') {
+        html += `<div class="status-msg ok">&#10004; Approved${rec.updatedAt ? ' &middot; ' + new Date(rec.updatedAt).toLocaleString() : ''}</div>`;
+      }
+      if (rec.status === 'asked' && rec.note) {
+        html += `<div class="status-msg ok">&#10004; Question sent to reseller: ${esc(rec.note)}</div>`;
+      }
+
+      html += `<div class="actions">
+        <button class="btn btn-approve" data-action="approve" data-id="${esc(rec.id)}">&#10004; Approve</button>
+        <button class="btn btn-ask" data-toggle="askPanel">&#9993; Ask reseller</button>
+      </div>`;
+
+      html += `<div class="action-panel" id="askPanel">
+        <label>Message to reseller (stored as note)</label>
+        <textarea id="askNote" rows="3" placeholder="Type your question for the reseller&hellip;"></textarea>
+        <div class="panel-btns">
+          <button class="btn btn-ask btn-sm" data-action="ask" data-id="${esc(rec.id)}">Send question</button>
+          <button class="btn btn-edit btn-sm" data-toggle="askPanel">Cancel</button>
+        </div>
+      </div>`;
+
+      html += section('Overview', `<div class="kv-grid">
+        ${kv('Ref', rec.ref || rec.id)}
+        ${kv('Submitted', rec.created ? new Date(rec.created).toLocaleString() : '&mdash;')}
+        ${kv('Reseller', rec.reseller || '&mdash;')}
+        ${kv('Email', rec.email || '&mdash;')}
+        ${kv('End Customer', rec.endCustomer || '&mdash;')}
+        ${kv('Opportunity ID', rec.opportunityId || 'Not provided')}
+        ${kv('Route', `<span class="badge badge-${esc(route)}">${esc(route)}</span>`)}
+        ${kv('Status', `<span class="badge badge-${esc(rec.status || 'new')}">${esc(rec.status || 'new')}</span>`)}
+        ${kv('Language', rec.lang || '&mdash;')}
+        ${kv('Source', rec.source || '&mdash;')}
+      </div>`);
+
+      if (rec.summary) {
+        html += section('Summary', `<div style="font-size:13px">${esc(rec.summary)}</div>`);
+      }
+
+      if (rec_ && rec_.model) {
+        html += section('Recommendation', `<div class="kv-grid">
+          ${kv('Model', rec_.model || '&mdash;')}
+          ${kv('MTM', rec_.mtm || '&mdash;')}
+          ${kv('Capacity (raw)', rec_.capacityTB ? rec_.capacityTB.raw + ' TB' : '&mdash;')}
+          ${kv('Capacity (usable)', rec_.capacityTB ? rec_.capacityTB.usable + ' TB' : '&mdash;')}
+          ${kv('Capacity (eff. est.)', rec_.capacityTB ? rec_.capacityTB.effectiveEstimate + ' TB' : '&mdash;')}
+          ${kv('Requested', rec_.capacityTB ? rec_.capacityTB.requested + ' TB (' + rec_.capacityTB.basis + ')' : '&mdash;')}
+          ${kv('Connectivity', rec_.connectivity || '&mdash;')}
+          ${kv('Expert Care', rec_.expertCare ? rec_.expertCare.years + 'Y ' + rec_.expertCare.level : '&mdash;')}
+          ${kv('Drives', rec_.drives ? rec_.drives.count + ' &times; ' + rec_.drives.sizeTB + 'TB (bundle ' + (rec_.drives.bundle || 'none') + ')' : '&mdash;')}
+        </div>`);
+      }
+
+      html += section('Spec (input)', `<div class="kv-grid">
+        ${Object.entries(rec.spec || {}).map(([k, v]) => kv(k, esc(JSON.stringify(v)))).join('')}
+      </div>`);
+
+      if (econf.lines && econf.lines.length) {
+        const rows = econf.lines.map(l =>
+          `<tr><td><span class="feature-code">${esc(l.feature || '&mdash;')}</span></td><td>${l.qty || 1}</td><td>${esc(l.he || l.en || '&mdash;')}</td></tr>`
+        ).join('');
+        html += section(`e-config Lines &middot; ${esc(econf.name || '')}`,
+          `<table><thead><tr><th>Feature</th><th>Qty</th><th>Description</th></tr></thead><tbody>${rows}</tbody></table>`);
+      }
+
+      if (price.lines && price.lines.length) {
+        const rows = price.lines.map(l => {
+          const ext = l.extList !== null ? '$' + l.extList.toLocaleString() : '<span class="not-in-mock">not in mock list</span>';
+          return `<tr><td><span class="feature-code">${esc(l.feature || '')}</span></td><td>${l.qty}</td><td>${esc(l.desc || '&mdash;')}</td><td style="text-align:right">${l.unitList !== null ? '$' + l.unitList.toLocaleString() : '&mdash;'}</td><td style="text-align:right">${ext}</td></tr>`;
+        }).join('');
+        const total = price.totalList ? '$' + price.totalList.toLocaleString() : '&mdash;';
+        html += section(`Mock Price <span class="mock-badge">MOCK &ndash; demo only</span>`,
+          `<table><thead><tr><th>Feature</th><th>Qty</th><th>Description</th><th style="text-align:right">Unit list</th><th style="text-align:right">Ext list</th></tr></thead><tbody>${rows}</tbody></table>
+          <div style="margin-top:10px;text-align:right" class="price-total">Total list: ${total} <span class="mock-badge">MOCK</span></div>
+          ${price.missingFeatures && price.missingFeatures.length ? `<div style="margin-top:6px;font-size:12px;color:var(--muted)">Not in mock list: ${esc(price.missingFeatures.join(', '))}</div>` : ''}`);
+      }
+
+      if (sizing.verify && sizing.verify.length) {
+        const items = sizing.verify.map(v =>
+          `<div class="verify-item"><span class="verify-icon">&#9888;&#65039;</span><span>${esc(v.en || v.he || JSON.stringify(v))}</span></div>`
+        ).join('');
+        html += section('Verify Checklist', items);
+      }
+
+      if (sizing.notes && sizing.notes.length) {
+        const items = sizing.notes.map(n =>
+          `<div class="verify-item"><span class="verify-icon">&#8505;&#65039;</span><span>${esc(n.en || n.he || JSON.stringify(n))}</span></div>`
+        ).join('');
+        html += section('Notes', items);
+      }
+
+      if (sizing.reasons && sizing.reasons.length) {
+        const items = sizing.reasons.map(r2 =>
+          `<div class="verify-item"><span class="verify-icon">&#128204;</span><span>${esc(r2.en || r2.he || JSON.stringify(r2))}</span></div>`
+        ).join('');
+        html += section('Reasons', items);
+      }
+
+      html += '</div>';
+      const pane = document.getElementById('detailPane');
+      pane.innerHTML = html;
+
+      pane.querySelectorAll('[data-action="approve"]').forEach(btn => {
+        btn.addEventListener('click', () => doApprove(btn.dataset.id));
+      });
+      pane.querySelectorAll('[data-action="ask"]').forEach(btn => {
+        btn.addEventListener('click', () => doAsk(btn.dataset.id));
+      });
+      pane.querySelectorAll('[data-toggle]').forEach(btn => {
+        btn.addEventListener('click', () => togglePanel(btn.dataset.toggle));
+      });
+    }
+
+    function togglePanel(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('visible');
+    }
+
+    async function doApprove(id) {
+      await patchAction(id, { status: 'approved' });
+    }
+
+    async function doAsk(id) {
+      const noteEl = document.getElementById('askNote');
+      const note = noteEl ? noteEl.value.trim() : '';
+      await patchAction(id, { status: 'asked', note });
+    }
+
+    async function patchAction(id, body) {
+      try {
+        const r = await fetch(API + '/' + encodeURIComponent(id), {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await r.json();
+        if (data.error) { alert('Error: ' + data.error); return; }
+        const idx = requests.findIndex(x => x.id === id);
+        if (idx !== -1) requests[idx] = { ...requests[idx], status: data.status };
+        renderList();
+        await selectRequest(id);
+      } catch (e) {
+        alert('Network error: ' + e.message);
+      }
+    }
+
+    function section(title, bodyHtml) {
+      return `<div class="section"><div class="section-title">${title}</div><div class="section-body">${bodyHtml}</div></div>`;
+    }
+    function kv(label, value) {
+      return `<span class="kv-label">${label}</span><span class="kv-value">${value}</span>`;
+    }
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', loadRequests);
+
+    // Init
+    loadRequests();
+    // Auto-refresh every 10 seconds for live demo
+    setInterval(loadRequests, 10000);
+  </script>
+</body>
+</html>

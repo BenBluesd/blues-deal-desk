@@ -118,3 +118,8 @@ build/
 # DO NOT REMOVE ABOVE PATTERNS
 # Add project-specific patterns below
 # ============================================
+# Project-specific (Blues Deal Desk)
+logs/
+data/requests.json
+.pytest_cache/
+.bob/mcp.json

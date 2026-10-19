@@ -1,0 +1,3184 @@
+[
+  {
+    "id": "DEMO-001",
+    "scenario": "routine-iscsi",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "נגב דאטה סיסטמס",
+      "endCustomer": "שרותי ענן ערבה",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-002",
+    "scenario": "routine-fc",
+    "spec": {
+      "cap": 30,
+      "capType": "usable",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "כרמל אינטגרטורים",
+      "endCustomer": "עיריית חשרון",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 52.8,
+        "usable": 33,
+        "effectiveEstimate": 80,
+        "effectiveSource": "ibm-catalog",
+        "basis": "usable",
+        "requested": 30
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 8 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-003",
+    "scenario": "missing-capacity",
+    "spec": {
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "Galilee Networks",
+      "endCustomer": "Jordan Valley Wineries",
+      "hasOpportunity": false
+    },
+    "route": "custom",
+    "recommendation": null,
+    "econfigLines": null,
+    "publicHeadline": {
+      "he": "הבקשה עוברת לבניית תצורה אישית",
+      "en": "This request goes to a custom configuration"
+    }
+  },
+  {
+    "id": "DEMO-004",
+    "scenario": "large-request-review",
+    "spec": {
+      "cap": 600,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "TelAviv DataCentre Ltd",
+      "endCustomer": "Ben-Gurion Airport IT Department",
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 52.8,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 422.4,
+        "usable": 264,
+        "effectiveEstimate": 655,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 600
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSM",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 52.8TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 52.8TB",
+      "en": "IBM FlashSystem 5600 with 8 × 52.8TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-005",
+    "scenario": "fc-with-new-san",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "need",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "אילת הוסטינג סולושנס",
+      "endCustomer": "מרכז הנופש ים סוף",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": {
+        "model": "SAN24B-7",
+        "mtm": "8969-P24",
+        "qty": 2,
+        "activePortsPerSwitch": 12,
+        "he": "2 מתגי SAN24B-7 (שני Fabric), כ-12 פורטים פעילים בכל מתג"
+      },
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-006",
+    "scenario": "basic-ec",
+    "spec": {
+      "cap": 30,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Basic"
+    },
+    "ctx": {
+      "reseller": "Jezreel Valley Tech",
+      "endCustomer": "Kishon Pumping Authority",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 2,
+        "sizeTB": 13.2,
+        "bundle": "ADK7"
+      },
+      "capacityTB": {
+        "raw": 26.4,
+        "usable": 13.2,
+        "effectiveEstimate": 30,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 30
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Basic"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK7",
+        "qty": 1,
+        "he": "Value Bundle: 2 כונני FCM5 של 13.2TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALJ5",
+        "qty": 1,
+        "he": "Expert Care Basic ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 2 כונני FCM5 של 13.2TB",
+      "en": "IBM FlashSystem 5600 with 2 × 13.2TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-007",
+    "scenario": "fs7600-explicit",
+    "spec": {
+      "cap": 150,
+      "capType": "effective",
+      "model": "FS7600",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "ספקי מחשוב הדרום",
+      "endCustomer": "עיריית אשדוד",
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 7600",
+      "mtm": "5075-A30",
+      "drives": {
+        "count": 13,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 85.8,
+        "usable": 66,
+        "effectiveEstimate": 158,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 150
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": null,
+        "qty": 13,
+        "he": "13 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": null,
+        "qty": 8,
+        "he": "8 פורטי FC ‏32Gb (לבחור קודים ב-e-config)"
+      },
+      {
+        "feature": null,
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 7600 עם 13 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 7600 with 13 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "DEMO-008",
+    "scenario": "unsure-capacity-type",
+    "spec": {
+      "cap": 50,
+      "capType": "unsure",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "Beersheba Cloud Solutions",
+      "endCustomer": "Negev University Research Centre",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 7,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 46.2,
+        "usable": 26.4,
+        "effectiveEstimate": 63,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 50
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 7,
+        "he": "7 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 7 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 7 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-001",
+    "scenario": "generated",
+    "spec": {
+      "cap": 10,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 2,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 13.2,
+        "usable": 6.6,
+        "effectiveEstimate": 16,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 10
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 2,
+        "he": "2 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 2 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 2 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-002",
+    "scenario": "generated",
+    "spec": {
+      "cap": 20,
+      "capType": "usable",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 7,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 46.2,
+        "usable": 26.4,
+        "effectiveEstimate": 63,
+        "effectiveSource": "formula",
+        "basis": "usable",
+        "requested": 20
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 7,
+        "he": "7 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 7 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 7 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-003",
+    "scenario": "generated",
+    "spec": {
+      "cap": 30,
+      "capType": "raw",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "raw",
+        "requested": 30
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-004",
+    "scenario": "generated",
+    "spec": {
+      "cap": 80,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 52.8,
+        "usable": 33,
+        "effectiveEstimate": 80,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 80
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 8 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-005",
+    "scenario": "generated",
+    "spec": {
+      "cap": 150,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 13.2,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 105.6,
+        "usable": 66,
+        "effectiveEstimate": 158,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 150
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSK",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 13.2TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 13.2TB",
+      "en": "IBM FlashSystem 5600 with 8 × 13.2TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-006",
+    "scenario": "generated",
+    "spec": {
+      "cap": 300,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 26.4,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 211.2,
+        "usable": 132,
+        "effectiveEstimate": 317,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 300
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSL",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 26.4TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 26.4TB",
+      "en": "IBM FlashSystem 5600 with 8 × 26.4TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-007",
+    "scenario": "generated",
+    "spec": {
+      "cap": 500,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 11,
+        "sizeTB": 26.4,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 290.4,
+        "usable": 211.2,
+        "effectiveEstimate": 507,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 500
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSL",
+        "qty": 11,
+        "he": "11 כונני FCM5 של 26.4TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 11 כונני FCM5 של 26.4TB",
+      "en": "IBM FlashSystem 5600 with 11 × 26.4TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-008",
+    "scenario": "generated",
+    "spec": {
+      "cap": 600,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 52.8,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 422.4,
+        "usable": 264,
+        "effectiveEstimate": 655,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 600
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSM",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 52.8TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 52.8TB",
+      "en": "IBM FlashSystem 5600 with 8 × 52.8TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-009",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-010",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc64",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-011",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 16,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "16x32Gb FC",
+      "fcPorts": 16,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 2,
+        "he": "2 זוגות כרטיסי FC ‏32Gb (16 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 16,
+        "he": "16 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-012",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "need",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": {
+        "model": "SAN24B-7",
+        "mtm": "8969-P24",
+        "qty": 2,
+        "activePortsPerSwitch": 12,
+        "he": "2 מתגי SAN24B-7 (שני Fabric), כ-12 פורטים פעילים בכל מתג"
+      },
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-013",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "direct",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-014",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "unsure",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-015",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 3,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 3,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK3",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-3 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-016",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Basic"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Basic"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALJ5",
+        "qty": 1,
+        "he": "Expert Care Basic ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-017",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 3,
+      "ecLevel": "Basic"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 3,
+        "level": "Basic"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": null,
+        "qty": 1,
+        "he": "Expert Care Basic ל-3 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-018",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced",
+      "model": "FS5600"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-019",
+    "scenario": "generated",
+    "spec": {
+      "cap": 150,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced",
+      "model": "FS7600"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 7600",
+      "mtm": "5075-A30",
+      "drives": {
+        "count": 13,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 85.8,
+        "usable": 66,
+        "effectiveEstimate": 158,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 150
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": null,
+        "qty": 13,
+        "he": "13 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": null,
+        "qty": 8,
+        "he": "8 פורטי FC ‏32Gb (לבחור קודים ב-e-config)"
+      },
+      {
+        "feature": null,
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 7600 עם 13 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 7600 with 13 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-020",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "txType": "sfp28",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-021",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "txType": "sfp10",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x10GbE + SFP+",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ6",
+        "qty": 4,
+        "he": "10GbE SW SFP+ transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-022",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "txType": "rj45",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x10GbE + RJ45",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJC",
+        "qty": 4,
+        "he": "10GbE SFP+ RJ45 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-023",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "txType": "none",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-024",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced",
+      "cables": true
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-025",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced",
+      "cables": false
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-026",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "נגב דאטה",
+      "endCustomer": "שרותי ענן",
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-027",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "Negev Data",
+      "endCustomer": "Cloud Services",
+      "hasOpportunity": true
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-028",
+    "scenario": "generated",
+    "spec": {
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "custom",
+    "recommendation": null,
+    "econfigLines": null,
+    "publicHeadline": {
+      "he": "הבקשה עוברת לבניית תצורה אישית",
+      "en": "This request goes to a custom configuration"
+    }
+  },
+  {
+    "id": "GEN-029",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "speed": "onboard",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "4x25GbE onboard",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-030",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "speed": "onboard",
+      "txType": "sfp10",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "4x10GbE onboard + SFP+",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ACJ6",
+        "qty": 2,
+        "he": "10GbE SW SFP+ transceivers: 4 משדרים לפורטים המובנים"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-031",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "speed": "unsure",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-032",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": [
+        "fc32",
+        "iscsi25"
+      ],
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-033",
+    "scenario": "generated",
+    "spec": {
+      "cap": 300,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 8,
+        "sizeTB": 26.4,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 211.2,
+        "usable": 132,
+        "effectiveEstimate": 317,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 300
+      },
+      "connectivity": "8x32Gb FC",
+      "fcPorts": 8,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSL",
+        "qty": 8,
+        "he": "8 כונני FCM5 של 26.4TB"
+      },
+      {
+        "feature": "ALB9",
+        "qty": 1,
+        "he": "1 זוגות כרטיסי FC ‏32Gb (8 פורטים)"
+      },
+      {
+        "feature": "ACSR",
+        "qty": 8,
+        "he": "8 כבלי OM3 באורך 5 מ'"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 8 כונני FCM5 של 26.4TB",
+      "en": "IBM FlashSystem 5600 with 8 × 26.4TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-034",
+    "scenario": "generated",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced",
+      "tier": "mid"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "review",
+    "recommendation": {
+      "model": "FlashSystem 7600",
+      "mtm": "5075-A30",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 48,
+        "effectiveSource": "formula",
+        "basis": "effective",
+        "requested": 40
+      },
+      "connectivity": "8x25GbE",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": null,
+        "qty": 6,
+        "he": "6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": null,
+        "qty": 1,
+        "he": "כרטיסי 25GbE ל-iSCSI, 8 פורטים (לבחור קוד ב-e-config)"
+      },
+      {
+        "feature": null,
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 7600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 7600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-035",
+    "scenario": "generated",
+    "spec": {
+      "cap": 19,
+      "capType": "usable",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 6,
+        "sizeTB": 6.6,
+        "bundle": "ADK9"
+      },
+      "capacityTB": {
+        "raw": 39.6,
+        "usable": 19.8,
+        "effectiveEstimate": 45,
+        "effectiveSource": "ibm-catalog",
+        "basis": "usable",
+        "requested": 19
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADK9",
+        "qty": 1,
+        "he": "Value Bundle: 6 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 6 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 6 × 6.6TB FCM5"
+    }
+  },
+  {
+    "id": "GEN-036",
+    "scenario": "generated",
+    "spec": {
+      "cap": 6,
+      "capType": "usable",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "hasOpportunity": false
+    },
+    "route": "auto",
+    "recommendation": {
+      "model": "FlashSystem 5600",
+      "mtm": "5127-A20",
+      "drives": {
+        "count": 2,
+        "sizeTB": 6.6,
+        "bundle": null
+      },
+      "capacityTB": {
+        "raw": 13.2,
+        "usable": 6.6,
+        "effectiveEstimate": 16,
+        "effectiveSource": "formula",
+        "basis": "usable",
+        "requested": 6
+      },
+      "connectivity": "8x25GbE + SFP28",
+      "fcPorts": 0,
+      "expertCare": {
+        "years": 5,
+        "level": "Advanced"
+      },
+      "san": null,
+      "storageAssurance": false
+    },
+    "econfigLines": [
+      {
+        "feature": "ADSJ",
+        "qty": 2,
+        "he": "2 כונני FCM5 של 6.6TB"
+      },
+      {
+        "feature": "ALB6",
+        "qty": 1,
+        "he": "25/10 GbE Adapter pair (4 port): ‏4 פורטים בכרטיסים, יחד עם 4 המובנים 8 פורטים"
+      },
+      {
+        "feature": "ACJ5",
+        "qty": 4,
+        "he": "25GbE SW SFP28 transceivers: 8 משדרים לכל 8 הפורטים (4 בכרטיסים + 4 מובנים)"
+      },
+      {
+        "feature": "ALH0",
+        "qty": 1,
+        "he": "Expert Care Indicator"
+      },
+      {
+        "feature": "ALK5",
+        "qty": 1,
+        "he": "5 year IBM Storage Expert Care Advanced (N/C)"
+      },
+      {
+        "feature": "5132-A05",
+        "qty": 1,
+        "he": "Expert Care Advanced ל-5 שנים (שירות 5132-A05)"
+      },
+      {
+        "feature": "AKNC",
+        "qty": 1,
+        "he": "משלוח Premium"
+      }
+    ],
+    "publicHeadline": {
+      "he": "IBM FlashSystem 5600 עם 2 כונני FCM5 של 6.6TB",
+      "en": "IBM FlashSystem 5600 with 2 × 6.6TB FCM5"
+    }
+  }
+]

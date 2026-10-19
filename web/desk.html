@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blues Deal Desk – Salesperson Desk</title>
+  <style>
+    :root {
+      --navy: #0a2850;
+      --blue: #1565c0;
+      --blue-light: #e8f0fe;
+      --accent: #1976d2;
+      --white: #ffffff;
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --border: #dde3ed;
+      --text: #1a2030;
+      --muted: #5a6580;
+      --auto: #2e7d32;
+      --review: #e65100;
+      --custom: #6a1b9a;
+      --success: #2e7d32;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-banner {
+      background: #fff3cd;
+      color: #856404;
+      text-align: center;
+      padding: 5px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #ffc107;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 18px; font-weight: 700; }
+    header a { color: rgba(255,255,255,0.75); font-size: 13px; text-decoration: none; }
+    header a:hover { color: var(--white); }
+    .pending-count {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── Left sidebar: request list ────────────────────────────── */
+    .sidebar {
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .sidebar-header h2 { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .refresh-btn {
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 3px 8px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .refresh-btn:hover { background: var(--bg); }
+
+    .req-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .req-item:hover { background: var(--blue-light); }
+    .req-item.active { background: var(--blue-light); border-left: 3px solid var(--blue); }
+    .req-item .ri-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; }
+    .req-item .ri-reseller { font-weight: 600; font-size: 13px; }
+    .req-item .ri-time { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .req-item .ri-id { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .req-item .ri-meta { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-auto { background: #e8f5e9; color: var(--auto); }
+    .badge-review { background: #fff3e0; color: var(--review); }
+    .badge-custom { background: #f3e5f5; color: var(--custom); }
+    .badge-pending { background: #e3f2fd; color: var(--accent); }
+    .badge-approved { background: #e8f5e9; color: var(--success); }
+    .badge-edited { background: #fce4ec; color: #880e4f; }
+    .badge-opp { background: #fce4ec; color: #880e4f; font-size: 10px; padding: 1px 5px; }
+
+    .empty-list { padding: 24px 16px; color: var(--muted); font-size: 13px; text-align: center; }
+
+    /* ── Detail panel ────────────────────────────────────────────── */
+    .detail {
+      overflow-y: auto;
+      padding: 0;
+      background: var(--bg);
+    }
+    .detail-inner { max-width: 840px; margin: 0 auto; padding: 20px 24px 40px; }
+    .detail-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .section-title {
+      padding: 10px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+    .section-body { padding: 14px 16px; }
+
+    .kv-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 6px 10px;
+    }
+    .kv-label { color: var(--muted); font-size: 13px; }
+    .kv-value { font-size: 13px; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 7px 10px; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.4px; }
+    td { padding: 7px 10px; border-bottom: 1px solid #f0f2f6; }
+    tr:last-child td { border-bottom: none; }
+    .feature-code { font-family: monospace; font-size: 12px; background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+    .not-in-mock { color: var(--muted); font-size: 11px; font-style: italic; }
+
+    /* Price */
+    .price-total { font-size: 15px; font-weight: 700; color: var(--blue); }
+    .mock-badge {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+
+    /* Verify / notes */
+    .verify-item { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f2f6; font-size: 13px; }
+    .verify-item:last-child { border-bottom: none; }
+    .verify-icon { flex-shrink: 0; font-size: 16px; }
+
+    /* Conversation */
+    .conv-msg { padding: 6px 0; border-bottom: 1px solid #f0f2f6; display: flex; gap: 8px; }
+    .conv-msg:last-child { border-bottom: none; }
+    .conv-role { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; width: 50px; flex-shrink: 0; padding-top: 2px; }
+    .conv-text { font-size: 13px; white-space: pre-wrap; word-break: break-word; flex: 1; }
+
+    /* Actions */
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .btn {
+      padding: 9px 18px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-approve { background: var(--success); color: var(--white); }
+    .btn-ask { background: var(--accent); color: var(--white); }
+    .btn-edit { background: var(--muted); color: var(--white); }
+
+    /* Ask / Edit panels */
+    .action-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .action-panel.visible { display: block; }
+    .action-panel label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .action-panel textarea, .action-panel input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+    }
+    .action-panel textarea:focus, .action-panel input:focus { border-color: var(--accent); }
+    .action-panel .panel-btns { display: flex; gap: 8px; margin-top: 10px; }
+    .btn-sm { padding: 6px 14px; font-size: 13px; }
+
+    .status-msg { padding: 10px 14px; border-radius: 7px; font-size: 13px; margin-bottom: 16px; }
+    .status-msg.ok { background: #e8f5e9; color: var(--success); border: 1px solid #a5d6a7; }
+    .status-msg.err { background: #fce4ec; color: #c62828; border: 1px solid #ef9a9a; }
+
+    /* Scrollbars */
+    .sidebar::-webkit-scrollbar, .detail::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb, .detail::-webkit-scrollbar-thumb { background: #c5cdd8; border-radius: 3px; }
+
+    @media (max-width: 640px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { max-height: 220px; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Demo: invented companies and mock prices · All data is fictional</div>
+
+  <header>
+    <h1>Blues Deal Desk – Salesperson Desk <span class="pending-count" id="pendingCount" style="display:none"></span></h1>
+    <a href="/">← Reseller chat</a>
+  </header>
+
+  <div class="layout">
+    <!-- ── Sidebar ── -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Requests</h2>
+        <button class="refresh-btn" onclick="loadRequests()">↻ Refresh</button>
+      </div>
+      <div id="reqList"><div class="empty-list">No requests yet.</div></div>
+    </div>
+
+    <!-- ── Detail ── -->
+    <div class="detail" id="detailPane">
+      <div class="detail-placeholder">Select a request to review</div>
+    </div>
+  </div>
+
+  <script>
+    let requests = [];
+    let currentId = null;
+
+    // ── Load request list ─────────────────────────────────────────
+    async function loadRequests() {
+      try {
+        const r = await fetch('/api/requests');
+        requests = await r.json();
+        renderList();
+        if (currentId) {
+          const still = requests.find(x => x.id === currentId);
+          if (still) renderDetail(still);
+        }
+      } catch { /* ignore */ }
+    }
+
+    function renderList() {
+      const el = document.getElementById('reqList');
+
+      // Update pending count badge in header
+      const pendingCount = requests.filter(r => r.status === 'pending').length;
+      const countEl = document.getElementById('pendingCount');
+      if (countEl) {
+        if (pendingCount > 0) {
+          countEl.textContent = pendingCount + ' pending';
+          countEl.style.display = '';
+        } else {
+          countEl.style.display = 'none';
+        }
+      }
+
+      if (!requests.length) {
+        el.innerHTML = '<div class="empty-list">No requests yet.</div>';
+        return;
+      }
+      el.innerHTML = requests.map(r => {
+        const route = r.engineResult && r.engineResult.route ? r.engineResult.route : '—';
+        const ts = r.submittedAt ? new Date(r.submittedAt).toLocaleString() : '';
+        const hasOpp = r.opportunityId ? '<span class="badge badge-opp">Opp ID</span>' : '';
+        const statusBadge = `<span class="badge badge-${r.status || 'pending'}">${r.status || 'pending'}</span>`;
+        const routeBadge = `<span class="badge badge-${route}">${route}</span>`;
+        // Show company name prominently; end customer if available
+        const companyName = esc(r.reseller || 'Unknown');
+        const endCustomer = r.ctx && r.ctx.endCustomer ? `<span style="font-size:11px;color:var(--muted)"> · ${esc(r.ctx.endCustomer)}</span>` : '';
+        return `<div class="req-item${r.id === currentId ? ' active' : ''}" onclick="selectRequest('${r.id}')">
+          <div class="ri-top">
+            <span class="ri-reseller">${companyName}${endCustomer}</span>
+            <span class="ri-time">${ts.split(',')[1] || ts}</span>
+          </div>
+          <div class="ri-id">${esc(r.id)}</div>
+          <div class="ri-meta">${routeBadge}${statusBadge}${hasOpp}</div>
+        </div>`;
+      }).join('');
+    }
+
+    async function selectRequest(id) {
+      currentId = id;
+      renderList();
+      try {
+        const r = await fetch(`/api/requests/${id}`);
+        const rec = await r.json();
+        renderDetail(rec);
+      } catch (e) {
+        document.getElementById('detailPane').innerHTML = `<div class="detail-placeholder">Error loading request.</div>`;
+      }
+    }
+
+    // ── Render detail ─────────────────────────────────────────────
+    function renderDetail(rec) {
+      const er = rec.engineResult || {};
+      const rec_ = er.recommendation || {};
+      const econf = er.econfig || {};
+      const pub = er.public || {};
+      const price = rec.mockPrice || {};
+      const route = er.route || '—';
+
+      let html = `<div class="detail-inner">`;
+
+      // Status message
+      if (rec.status === 'approved') {
+        html += `<div class="status-msg ok">✔ Approved${rec.approvedAt ? ' · ' + new Date(rec.approvedAt).toLocaleString() : ''}</div>`;
+      }
+
+      // ── Actions ──────────────────────────────────────────────────
+      html += `<div class="actions">
+        <button class="btn btn-approve" onclick="doApprove('${rec.id}')">✔ Approve</button>
+        <button class="btn btn-ask" onclick="togglePanel('askPanel')">✉ Ask reseller</button>
+        <button class="btn btn-edit" onclick="togglePanel('editPanel')">✎ Edit spec</button>
+      </div>`;
+
+      // Ask panel
+      html += `<div class="action-panel" id="askPanel">
+        <label>Message to reseller</label>
+        <textarea id="askNote" rows="3" placeholder="Type your question for the reseller…"></textarea>
+        <div class="panel-btns">
+          <button class="btn btn-ask btn-sm" onclick="doAsk('${rec.id}')">Send question</button>
+          <button class="btn btn-edit btn-sm" onclick="togglePanel('askPanel')">Cancel</button>
+        </div>
+      </div>`;
+
+      // Edit panel
+      const specJson = JSON.stringify(rec.spec || {}, null, 2);
+      html += `<div class="action-panel" id="editPanel">
+        <label>Edit spec (JSON) – re-runs the engine</label>
+        <textarea id="editSpec" rows="8" style="font-family:monospace;font-size:12px">${esc(specJson)}</textarea>
+        <div class="panel-btns">
+          <button class="btn btn-edit btn-sm" onclick="doEdit('${rec.id}')">Re-run engine</button>
+          <button class="btn btn-approve btn-sm" onclick="togglePanel('editPanel')">Cancel</button>
+        </div>
+      </div>`;
+
+      // ── Overview ──────────────────────────────────────────────────
+      html += section('Overview', `<div class="kv-grid">
+        ${kv('Request ID', rec.id)}
+        ${kv('Submitted', rec.submittedAt ? new Date(rec.submittedAt).toLocaleString() : '—')}
+        ${kv('Reseller', rec.reseller || '—')}
+        ${kv('Email', rec.email || '—')}
+        ${kv('Opportunity ID', rec.opportunityId || 'Not provided')}
+        ${kv('Route', `<span class="badge badge-${route}">${route}</span>`)}
+        ${kv('Status', `<span class="badge badge-${rec.status || 'pending'}">${rec.status || 'pending'}</span>`)}
+        ${kv('Language', rec.lang || '—')}
+      </div>`);
+
+      // ── Recommendation ────────────────────────────────────────────
+      if (rec_) {
+        html += section('Recommendation', `<div class="kv-grid">
+          ${kv('Model', rec_.model || '—')}
+          ${kv('MTM', rec_.mtm || '—')}
+          ${kv('Capacity (raw)', rec_.capacityTB ? rec_.capacityTB.raw + ' TB' : '—')}
+          ${kv('Capacity (usable)', rec_.capacityTB ? rec_.capacityTB.usable + ' TB' : '—')}
+          ${kv('Capacity (effective est.)', rec_.capacityTB ? rec_.capacityTB.effectiveEstimate + ' TB' : '—')}
+          ${kv('Requested', rec_.capacityTB ? rec_.capacityTB.requested + ' TB (' + rec_.capacityTB.basis + ')' : '—')}
+          ${kv('Connectivity', rec_.connectivity || '—')}
+          ${kv('Expert Care', rec_.expertCare ? rec_.expertCare.years + 'Y ' + rec_.expertCare.level : '—')}
+          ${kv('Drives', rec_.drives ? rec_.drives.count + ' × ' + rec_.drives.sizeTB + 'TB (bundle ' + rec_.drives.bundle + ')' : '—')}
+          ${kv('Storage Assurance', rec_.storageAssurance ? 'Yes' : 'No')}
+        </div>`);
+      }
+
+      // ── Spec input ────────────────────────────────────────────────
+      html += section('Spec (input)', `<div class="kv-grid">
+        ${Object.entries(rec.spec || {}).map(([k, v]) => kv(k, JSON.stringify(v))).join('')}
+      </div>`);
+
+      // ── e-config lines ─────────────────────────────────────────────
+      if (econf.lines && econf.lines.length) {
+        const rows = econf.lines.map(l =>
+          `<tr><td><span class="feature-code">${esc(l.feature)}</span></td><td>${l.qty || 1}</td><td>${esc(l.he || l.en || '—')}</td></tr>`
+        ).join('');
+        html += section(`e-config Lines · ${esc(econf.name || '')}`,
+          `<table><thead><tr><th>Feature</th><th>Qty</th><th>Description</th></tr></thead><tbody>${rows}</tbody></table>`);
+      }
+
+      // ── Mock price ─────────────────────────────────────────────────
+      if (price.lines && price.lines.length) {
+        const rows = price.lines.map(l => {
+          const ext = l.extList !== null ? '$' + l.extList.toLocaleString() : '<span class="not-in-mock">not in mock list</span>';
+          return `<tr><td><span class="feature-code">${esc(l.feature)}</span></td><td>${l.qty}</td><td>${esc(l.desc || '—')}</td><td style="text-align:right">$${l.unitList !== null ? l.unitList.toLocaleString() : '—'}</td><td style="text-align:right">${ext}</td></tr>`;
+        }).join('');
+        const total = price.totalList ? '$' + price.totalList.toLocaleString() : '—';
+        html += section(`Mock Price <span class="mock-badge">MOCK – demo only</span>`,
+          `<table><thead><tr><th>Feature</th><th>Qty</th><th>Description</th><th style="text-align:right">Unit list</th><th style="text-align:right">Ext list</th></tr></thead><tbody>${rows}</tbody></table>
+          <div style="margin-top:10px;text-align:right" class="price-total">Total list: ${total} <span class="mock-badge">MOCK</span></div>
+          ${price.missingFeatures && price.missingFeatures.length ? `<div style="margin-top:6px;font-size:12px;color:var(--muted)">Not in mock list: ${price.missingFeatures.join(', ')}</div>` : ''}`);
+      }
+
+      // ── Verify ───────────────────────────────────────────────────
+      if (er.verify && er.verify.length) {
+        const items = er.verify.map(v =>
+          `<div class="verify-item"><span class="verify-icon">⚠️</span><span>${esc(v.en || v.he || JSON.stringify(v))}</span></div>`
+        ).join('');
+        html += section('Verify Checklist', items);
+      }
+
+      // ── Notes ───────────────────────────────────────────────────
+      if (er.notes && er.notes.length) {
+        const items = er.notes.map(n =>
+          `<div class="verify-item"><span class="verify-icon">ℹ️</span><span>${esc(n.en || n.he || JSON.stringify(n))}</span></div>`
+        ).join('');
+        html += section('Notes', items);
+      }
+
+      // ── Reasons ─────────────────────────────────────────────────
+      if (er.reasons && er.reasons.length) {
+        const items = er.reasons.map(r =>
+          `<div class="verify-item"><span class="verify-icon">📌</span><span>${esc(r.en || r.he || JSON.stringify(r))}</span></div>`
+        ).join('');
+        html += section('Reasons', items);
+      }
+
+      // ── Conversation ─────────────────────────────────────────────
+      if (rec.conversation && rec.conversation.length) {
+        const msgs = rec.conversation.map(m =>
+          `<div class="conv-msg"><span class="conv-role">${esc(m.role)}</span><span class="conv-text">${esc(m.text)}</span></div>`
+        ).join('');
+        html += section('Conversation', msgs);
+      }
+
+      html += '</div>'; // detail-inner
+      document.getElementById('detailPane').innerHTML = html;
+    }
+
+    // ── Actions ──────────────────────────────────────────────────
+    function togglePanel(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('visible');
+    }
+
+    async function doApprove(id) {
+      await postAction(id, { action: 'approve' });
+    }
+
+    async function doAsk(id) {
+      const note = document.getElementById('askNote') && document.getElementById('askNote').value;
+      await postAction(id, { action: 'ask', note });
+    }
+
+    async function doEdit(id) {
+      const specText = document.getElementById('editSpec') && document.getElementById('editSpec').value;
+      let spec;
+      try { spec = JSON.parse(specText); } catch {
+        alert('Invalid JSON in spec field.');
+        return;
+      }
+      await postAction(id, { action: 'edit', spec });
+    }
+
+    async function postAction(id, body) {
+      try {
+        const r = await fetch(`/api/requests/${id}/action`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const rec = await r.json();
+        if (rec.error) { alert('Error: ' + rec.error); return; }
+        // Update local cache and re-render
+        const idx = requests.findIndex(x => x.id === id);
+        if (idx !== -1) requests[idx] = rec;
+        renderList();
+        renderDetail(rec);
+      } catch (e) {
+        alert('Network error: ' + e.message);
+      }
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────
+    function section(title, bodyHtml) {
+      return `<div class="section"><div class="section-title">${title}</div><div class="section-body">${bodyHtml}</div></div>`;
+    }
+    function kv(label, value) {
+      return `<span class="kv-label">${label}</span><span class="kv-value">${value}</span>`;
+    }
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ── Init ─────────────────────────────────────────────────────
+    loadRequests();
+    setInterval(loadRequests, 15000);
+  </script>
+</body>
+</html>

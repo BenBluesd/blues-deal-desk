@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blues Deal Desk – FlashSystem Configuration</title>
+  <style>
+    :root {
+      --navy: #0a2850;
+      --blue: #1565c0;
+      --blue-light: #e8f0fe;
+      --accent: #1976d2;
+      --white: #ffffff;
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --border: #dde3ed;
+      --text: #1a2030;
+      --muted: #5a6580;
+      --bubble-user: #e8f0fe;
+      --bubble-agent: #ffffff;
+      --success: #2e7d32;
+      --warning: #e65100;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Demo banner ──────────────────────────────────────────────── */
+    .demo-banner {
+      background: #fff3cd;
+      color: #856404;
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #ffc107;
+    }
+
+    /* ── Header ───────────────────────────────────────────────────── */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    header .brand { display: flex; flex-direction: column; }
+    header .brand h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    header .brand p { font-size: 13px; opacity: 0.75; margin-top: 2px; }
+    .lang-toggle {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.15s;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── Chat container ───────────────────────────────────────────── */
+    .chat-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ── Messages ─────────────────────────────────────────────────── */
+    .msg { display: flex; flex-direction: column; max-width: 80%; }
+    .msg.user { align-self: flex-start; align-items: flex-start; }
+    .msg.agent { align-self: flex-end; align-items: flex-end; }
+
+    /* In RTL: user is right, agent is left — we swap alignment */
+    [dir="rtl"] .msg.user { align-self: flex-end; align-items: flex-end; }
+    [dir="rtl"] .msg.agent { align-self: flex-start; align-items: flex-start; }
+
+    .bubble {
+      padding: 10px 16px;
+      border-radius: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.55;
+    }
+    .msg.user .bubble {
+      background: var(--bubble-user);
+      border-bottom-left-radius: 4px;
+    }
+    [dir="rtl"] .msg.user .bubble { border-bottom-left-radius: 14px; border-bottom-right-radius: 4px; }
+    .msg.agent .bubble {
+      background: var(--bubble-agent);
+      border: 1px solid var(--border);
+      border-bottom-right-radius: 4px;
+    }
+    [dir="rtl"] .msg.agent .bubble { border-bottom-right-radius: 14px; border-bottom-left-radius: 4px; }
+    .msg-time { font-size: 11px; color: var(--muted); margin-top: 3px; padding: 0 4px; }
+
+    /* ── Summary card ─────────────────────────────────────────────── */
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 4px;
+      max-width: 100%;
+    }
+    [dir="rtl"] .summary-card { border-left: 1px solid var(--border); border-right: 4px solid var(--blue); }
+    .summary-card h3 { font-size: 15px; color: var(--blue); margin-bottom: 8px; }
+    .summary-card ul { padding-right: 18px; }
+    [dir="ltr"] .summary-card ul { padding-left: 18px; padding-right: 0; }
+    .summary-card li { margin-bottom: 4px; }
+    .summary-card .disclaimer { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; }
+    .summary-card .assumptions {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .summary-card .assumptions h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .summary-card .assumptions li {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Success card (after submit) ──────────────────────────────── */
+    .success-card {
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 4px;
+    }
+    .success-card .sc-icon { font-size: 28px; text-align: center; margin-bottom: 8px; }
+    .success-card .sc-id { font-size: 15px; font-weight: 700; color: var(--success); margin-bottom: 4px; }
+    .success-card .sc-msg { font-size: 13px; color: #2e7d32; }
+    .success-card .sc-new-btn {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .success-card .sc-new-btn:hover { background: var(--navy); }
+
+    /* ── Quick-reply chips ────────────────────────────────────────── */
+    .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .qr-chip {
+      background: var(--blue-light);
+      border: 1px solid #b3c8f7;
+      color: var(--blue);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+      white-space: nowrap;
+    }
+    .qr-chip:hover { background: #d0e3ff; border-color: var(--blue); }
+
+    /* ── Typing indicator ─────────────────────────────────────────── */
+    .typing { display: flex; gap: 4px; padding: 12px 16px; }
+    .typing span {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--muted); animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+
+    /* ── Input row ────────────────────────────────────────────────── */
+    .input-row {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    textarea {
+      flex: 1;
+      resize: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      line-height: 1.5;
+      outline: none;
+      max-height: 120px;
+      overflow-y: auto;
+      color: var(--text);
+    }
+    textarea:focus { border-color: var(--accent); }
+    textarea:disabled { background: #f0f2f5; color: var(--muted); cursor: not-allowed; }
+    .send-btn {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.15s;
+      align-self: flex-end;
+      flex-shrink: 0;
+    }
+    .send-btn:hover { background: var(--navy); }
+    .send-btn:disabled { background: var(--muted); cursor: not-allowed; }
+
+    /* ── Demo buttons ─────────────────────────────────────────────── */
+    .demo-row {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px 0;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .demo-btn {
+      font-size: 12px;
+      padding: 5px 12px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .demo-btn:hover { background: var(--blue-light); }
+
+    /* ── Scrollbar ────────────────────────────────────────────────── */
+    .chat-wrap::-webkit-scrollbar { width: 5px; }
+    .chat-wrap::-webkit-scrollbar-thumb { background: #c5cdd8; border-radius: 3px; }
+
+    @media (max-width: 480px) {
+      header { padding: 10px 14px; }
+      header .brand h1 { font-size: 17px; }
+      .chat-wrap { padding: 12px 10px; }
+      .input-row { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner" id="demoBanner">
+    Demo: invented companies and mock prices · Companies and scenarios are fictional
+  </div>
+
+  <header>
+    <div class="brand">
+      <h1 id="headerTitle">Blues Deal Desk</h1>
+      <p id="headerSub">IBM FlashSystem configuration in minutes</p>
+    </div>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">English</button>
+  </header>
+
+  <div class="demo-row" id="demoRow">
+    <button class="demo-btn" onclick="loadExample()">📋 Load example</button>
+  </div>
+
+  <div class="chat-wrap" id="chatWrap"></div>
+
+  <div class="input-row" style="max-width:720px">
+    <textarea id="msgInput" rows="1" placeholder="Type your request…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const SESSION_ID = 'sess-' + Math.random().toString(36).slice(2);
+    let currentLang = 'he';
+    let demoRequests = [];
+
+    const UI = {
+      he: {
+        banner: 'הדגמה: שמות חברות ומחירים מומצאים · ב-Blues Deal Desk אין מחירים אמיתיים',
+        headerTitle: 'Blues Deal Desk',
+        headerSub: 'הגדרת IBM FlashSystem תוך דקות',
+        langToggle: 'English',
+        placeholder: 'כתוב את הבקשה שלך…',
+        send: 'שלח',
+        loadExample: '📋 טען דוגמה',
+        assumptionsHeading: 'הנחות',
+        successMsg: 'נציג Blues יצור איתך קשר עם הצעת מחיר.',
+        newRequest: '+ בקשה חדשה',
+      },
+      en: {
+        banner: 'Demo: invented companies and mock prices · Companies and scenarios are fictional',
+        headerTitle: 'Blues Deal Desk',
+        headerSub: 'IBM FlashSystem configuration in minutes',
+        langToggle: 'עברית',
+        placeholder: 'Type your request…',
+        send: 'Send',
+        loadExample: '📋 Load example',
+        assumptionsHeading: 'Assumptions',
+        successMsg: 'A Blues salesperson will contact you with a price.',
+        newRequest: '+ New request',
+      },
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'he' ? 'en' : 'he';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'he' ? 'rtl' : 'ltr';
+      applyUI();
+    }
+
+    function applyUI() {
+      const u = UI[currentLang];
+      document.getElementById('demoBanner').textContent = u.banner;
+      document.getElementById('headerTitle').textContent = u.headerTitle;
+      document.getElementById('headerSub').textContent = u.headerSub;
+      document.getElementById('langToggle').textContent = u.langToggle;
+      document.getElementById('msgInput').placeholder = u.placeholder;
+      document.getElementById('sendBtn').textContent = u.send;
+      document.querySelector('.demo-btn').textContent = u.loadExample;
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function appendMessage(role, text, extra, quickReplies) {
+      const wrap = document.getElementById('chatWrap');
+      const div = document.createElement('div');
+      div.className = 'msg ' + role;
+
+      if (text) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        // Convert **bold** markdown
+        bubble.innerHTML = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        div.appendChild(bubble);
+      }
+
+      if (extra) {
+        div.appendChild(extra);
+      }
+
+      // Quick-reply chips (only for agent messages)
+      if (quickReplies && quickReplies.length && role === 'agent') {
+        const qrDiv = document.createElement('div');
+        qrDiv.className = 'quick-replies';
+        quickReplies.forEach(label => {
+          const chip = document.createElement('button');
+          chip.className = 'qr-chip';
+          chip.textContent = label;
+          chip.addEventListener('click', () => {
+            // Remove all quick-reply rows (they become stale after first tap)
+            document.querySelectorAll('.quick-replies').forEach(el => el.remove());
+            sendQuickReply(label);
+          });
+          qrDiv.appendChild(chip);
+        });
+        div.appendChild(qrDiv);
+      }
+
+      const ts = document.createElement('div');
+      ts.className = 'msg-time';
+      ts.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      div.appendChild(ts);
+
+      wrap.appendChild(div);
+      wrap.scrollTop = wrap.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      const wrap = document.getElementById('chatWrap');
+      const el = document.createElement('div');
+      el.className = 'msg agent';
+      el.id = 'typingIndicator';
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble typing';
+      bubble.innerHTML = '<span></span><span></span><span></span>';
+      el.appendChild(bubble);
+      wrap.appendChild(el);
+      wrap.scrollTop = wrap.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
+
+    function buildSummaryCard(pub) {
+      if (!pub) return null;
+      const card = document.createElement('div');
+      card.className = 'summary-card';
+      const L = currentLang;
+      const headline = pub.headline ? (pub.headline[L] || pub.headline.en) : '';
+      if (headline) {
+        const h = document.createElement('h3');
+        h.textContent = headline;
+        card.appendChild(h);
+      }
+      if (pub.lines && pub.lines.length) {
+        const ul = document.createElement('ul');
+        pub.lines.forEach(l => {
+          const li = document.createElement('li');
+          li.textContent = l[L] || l.en;
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+      }
+      if (pub.disclaimer) {
+        const d = document.createElement('div');
+        d.className = 'disclaimer';
+        d.textContent = pub.disclaimer[L] || pub.disclaimer.en;
+        card.appendChild(d);
+      }
+      // Assumptions (engine notes, not questions)
+      if (pub.assumptions && pub.assumptions.length) {
+        const aDiv = document.createElement('div');
+        aDiv.className = 'assumptions';
+        const aH = document.createElement('h4');
+        aH.textContent = UI[L].assumptionsHeading;
+        aDiv.appendChild(aH);
+        const aUl = document.createElement('ul');
+        pub.assumptions.forEach(note => {
+          const li = document.createElement('li');
+          li.textContent = note;
+          aUl.appendChild(li);
+        });
+        aDiv.appendChild(aUl);
+        card.appendChild(aDiv);
+      }
+      return card;
+    }
+
+    function buildSuccessCard(id) {
+      const L = currentLang;
+      const div = document.createElement('div');
+      div.className = 'success-card';
+      div.innerHTML = `
+        <div class="sc-icon">✅</div>
+        <div class="sc-id">${id}</div>
+        <div class="sc-msg">${UI[L].successMsg}</div>
+      `;
+      const newBtn = document.createElement('button');
+      newBtn.className = 'sc-new-btn';
+      newBtn.textContent = UI[L].newRequest;
+      newBtn.addEventListener('click', () => window.location.reload());
+      div.appendChild(newBtn);
+      return div;
+    }
+
+    async function dispatchMessage(text) {
+      document.getElementById('sendBtn').disabled = true;
+      // Remove stale quick-reply chips
+      document.querySelectorAll('.quick-replies').forEach(el => el.remove());
+
+      showTyping();
+
+      try {
+        const resp = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: SESSION_ID, message: text, lang: currentLang }),
+        });
+        const data = await resp.json();
+        removeTyping();
+
+        let extra = null;
+        if (data.requestId) {
+          // Fix 6: show success card, disable input
+          extra = buildSuccessCard(data.requestId);
+          document.getElementById('msgInput').disabled = true;
+          document.getElementById('sendBtn').disabled = true;
+          appendMessage('agent', null, extra, null);
+          return;
+        }
+        if (data.public) extra = buildSummaryCard(data.public);
+
+        // Fix 3: reply text is just the short "Submit to Blues?" line — card goes first
+        appendMessage('agent', data.reply || data.error || '…', extra, data.quickReplies || null);
+      } catch (e) {
+        removeTyping();
+        appendMessage('agent', 'Connection error. Please try again.');
+      }
+
+      document.getElementById('sendBtn').disabled = false;
+      document.getElementById('msgInput').focus();
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('msgInput');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      autoResize(input);
+      appendMessage('user', text);
+      await dispatchMessage(text);
+    }
+
+    function sendQuickReply(text) {
+      appendMessage('user', text);
+      dispatchMessage(text);
+    }
+
+    async function loadExample() {
+      if (!demoRequests.length) {
+        try {
+          const r = await fetch('/api/demo-requests');
+          demoRequests = await r.json();
+        } catch { return; }
+      }
+      if (!demoRequests.length) return;
+      const pick = demoRequests[Math.floor(Math.random() * demoRequests.length)];
+      const input = document.getElementById('msgInput');
+      input.value = pick.message;
+      autoResize(input);
+      input.focus();
+    }
+
+    // Initial greeting
+    window.addEventListener('DOMContentLoaded', () => {
+      applyUI();
+      const greet = currentLang === 'he'
+        ? 'שלום! אני עוזר להגדרת IBM FlashSystem. מה שם החברה שלך?'
+        : 'Hello! I help configure IBM FlashSystem systems. What is your company name?';
+      appendMessage('agent', greet);
+    });
+  </script>
+</body>
+</html>

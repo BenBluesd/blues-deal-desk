@@ -1,0 +1,177 @@
+[
+  {
+    "id": "DEMO-001",
+    "lang": "he",
+    "scenario": "routine-iscsi",
+    "reseller": "נגב דאטה סיסטמס",
+    "endCustomer": "שרותי ענן ערבה",
+    "message": "שלום, אנחנו צריכים פתרון FlashSystem ללקוח שלנו. הם צריכים בערך 40TB אחסון, iSCSI 25Gb, ו-5 שנות Expert Care Advanced. מה אפשר להמליץ?",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "נגב דאטה סיסטמס",
+      "endCustomer": "שרותי ענן ערבה",
+      "hasOpportunity": false
+    },
+    "_note": "Straightforward iSCSI request – routes to auto, no missing info."
+  },
+  {
+    "id": "DEMO-002",
+    "lang": "he",
+    "scenario": "routine-fc",
+    "reseller": "כרמל אינטגרטורים",
+    "endCustomer": "עיריית חשרון",
+    "message": "היי, אנחנו בכרמל אינטגרטורים. הלקוח שלנו צריך FlashSystem עם 8 פורטי FC 32Gb, קיבולת usable של 30TB, ו-5 שנות Expert Care Advanced. יש להם מתגי SAN קיימים.",
+    "spec": {
+      "cap": 30,
+      "capType": "usable",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "has",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "כרמל אינטגרטורים",
+      "endCustomer": "עיריית חשרון",
+      "hasOpportunity": false
+    },
+    "_note": "Standard FC request with existing SAN switches – routes to auto."
+  },
+  {
+    "id": "DEMO-003",
+    "lang": "en",
+    "scenario": "missing-capacity",
+    "reseller": "Galilee Networks",
+    "endCustomer": "Jordan Valley Wineries",
+    "message": "Hi, we need a FlashSystem with iSCSI 25Gb and 5-year Advanced Expert Care. We haven't confirmed the exact capacity yet – the customer is still deciding.",
+    "spec": {
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "Galilee Networks",
+      "endCustomer": "Jordan Valley Wineries",
+      "hasOpportunity": false
+    },
+    "_note": "Capacity missing – engine returns custom route; agent should ask for capacity."
+  },
+  {
+    "id": "DEMO-004",
+    "lang": "en",
+    "scenario": "large-request-review",
+    "reseller": "TelAviv DataCentre Ltd",
+    "endCustomer": "Ben-Gurion Airport IT Department",
+    "message": "We need a FlashSystem for a big deployment: approximately 600TB effective, FC 32Gb with 8 ports, 5-year Expert Care Advanced.",
+    "spec": {
+      "cap": 600,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "TelAviv DataCentre Ltd",
+      "endCustomer": "Ben-Gurion Airport IT Department",
+      "hasOpportunity": false
+    },
+    "_note": ">500TB effective – engine routes to review automatically."
+  },
+  {
+    "id": "DEMO-005",
+    "lang": "he",
+    "scenario": "fc-with-new-san",
+    "reseller": "אילת הוסטינג סולושנס",
+    "endCustomer": "מרכז הנופש ים סוף",
+    "message": "שלום, אנחנו צריכים FlashSystem 5600 עם 40TB אפקטיבי, FC 32Gb 8 פורטים, ו-5 שנות Advanced. אין ללקוח מתגי SAN, הם צריכים הכל.",
+    "spec": {
+      "cap": 40,
+      "capType": "effective",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "sanSw": "need",
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "אילת הוסטינג סולושנס",
+      "endCustomer": "מרכז הנופש ים סוף",
+      "hasOpportunity": false
+    },
+    "_note": "FC with new SAN switches – engine includes SAN24B-7 recommendation."
+  },
+  {
+    "id": "DEMO-006",
+    "lang": "en",
+    "scenario": "basic-ec",
+    "reseller": "Jezreel Valley Tech",
+    "endCustomer": "Kishon Pumping Authority",
+    "message": "Good morning. Our customer needs a FlashSystem with about 30TB effective capacity, iSCSI 25Gb, and 5-year Basic Expert Care. Budget is limited.",
+    "spec": {
+      "cap": 30,
+      "capType": "effective",
+      "conn": "iscsi25",
+      "ec": 5,
+      "ecLevel": "Basic"
+    },
+    "ctx": {
+      "reseller": "Jezreel Valley Tech",
+      "endCustomer": "Kishon Pumping Authority",
+      "hasOpportunity": false
+    },
+    "_note": "Expert Care Basic 5Y – should pick ALJ5 feature code."
+  },
+  {
+    "id": "DEMO-007",
+    "lang": "he",
+    "scenario": "fs7600-explicit",
+    "reseller": "ספקי מחשוב הדרום",
+    "endCustomer": "עיריית אשדוד",
+    "message": "אנחנו צריכים FS7600 ספציפית, עם 150TB אפקטיבי ו-FC 32Gb, 8 פורטים, Advanced 5 שנים.",
+    "spec": {
+      "cap": 150,
+      "capType": "effective",
+      "model": "FS7600",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "ספקי מחשוב הדרום",
+      "endCustomer": "עיריית אשדוד",
+      "hasOpportunity": false
+    },
+    "_note": "Explicit FS7600 request – routes to review (model not yet fully verified in e-config)."
+  },
+  {
+    "id": "DEMO-008",
+    "lang": "en",
+    "scenario": "unsure-capacity-type",
+    "reseller": "Beersheba Cloud Solutions",
+    "endCustomer": "Negev University Research Centre",
+    "message": "Hi, we need roughly 50TB of storage – not sure if that's raw or usable. FC 32Gb, 8 ports, 5-year Advanced care.",
+    "spec": {
+      "cap": 50,
+      "capType": "unsure",
+      "conn": "fc32",
+      "fcPorts": 8,
+      "ec": 5,
+      "ecLevel": "Advanced"
+    },
+    "ctx": {
+      "reseller": "Beersheba Cloud Solutions",
+      "endCustomer": "Negev University Research Centre",
+      "hasOpportunity": false
+    },
+    "_note": "Capacity type unsure – engine assumes effective and asks the agent to clarify with the reseller."
+  }
+]

@@ -1,68 +1,115 @@
-# IBM Hackathon GitHub Project Template
+# Blues Deal Desk
 
-This GitHub project template is for IBM Hackathon projects. It includes pre-configured security files to help prevent accidental credential commits and potential account suspension during the hackathon.
+AI-assisted IBM FlashSystem sizing and deal desk for Blues Distribution.
 
-## 🚀 Quick Start
+## What it does
 
-1. **Use this template to create your project:**
-   - Click "Use this template" button above and select "Create a new repository"
-   - Name your repository
-   - Click "Create repository"
+A reseller describes a storage need in plain Hebrew or English. The AI agent turns that into a complete, validated IBM FlashSystem configuration in minutes, 24/7. A Blues salesperson reviews and approves before anything is sent to IBM or the reseller.
 
-2. **Clone your new repository:**
+## Prerequisites
 
-   ```bash
-   git clone https://github.com/HACKATHON-ORG/your-repo-name.git
-   cd your-repo-name
-   ```
+- Node.js ≥ 18
 
-3. **Set up environment variables:**
+## Quick start
 
-   ```bash
-   # Copy the example file
-   cp .env.example .env
+```bash
+cp .env.example .env   # optional: fill in watsonx.ai credentials for Granite extraction
+npm install
+npm start              # starts the server on http://localhost:3000
+```
 
-   # Edit .env with your actual credentials
-   # Use your preferred editor (nano, vim, code, etc.)
-   nano .env
-   ```
+Open:
+- **Reseller chat**: `http://localhost:3000/`
+- **Salesperson desk**: `http://localhost:3000/desk.html`
 
-4. **Verify .gitignore is working:**
+## Run tests
 
-   ```bash
-   # This should NOT show .env file
-   git status
+```bash
+npm test       # engine + agent unit tests (no key required)
+npm run smoke  # in-process end-to-end smoke test
+```
 
-   # This should confirm .env is ignored
-   git check-ignore -v .env
-   ```
+## Environment variables (optional)
 
-5. **Start developing!**
+Copy `.env.example` to `.env` and fill in values to enable Granite on watsonx.ai.
+Without these keys the agent uses the built-in rule-based extractor — no functionality is lost.
 
-## 🔒 Security Features
+| Variable | Purpose |
+|---|---|
+| `WATSONX_APIKEY` | IBM Cloud API key |
+| `WATSONX_PROJECT_ID` | watsonx.ai project ID |
+| `WATSONX_URL` | watsonx.ai endpoint URL |
+| `WATSONX_MODEL_ID` | Model ID (default: `ibm/granite-3-8b-instruct`) |
+| `PORT` | Server port (default: 3000) |
 
-This template includes:
+## Project layout
 
-- **`.gitignore`** - Prevents committing credentials and live session files
-- **`.bobignore`** - Prevents AI assistants from logging credentials
-- **`.env.example`** - Template for your environment variables
+```
+server.js       Main Express server (API + static files)
+engine/         Thin wrapper around reference/sizer.js + unit tests
+agent/          AI intake agent
+  loop.js         State-machine conversation handler
+  extract-fallback.js   Rule-based extractor (no key needed)
+  extract-granite.js    watsonx.ai Granite extractor (falls back to rule-based)
+  extract.js      Extractor interface (re-exports granite with fallback)
+  price.js        Mock price calculator
+  tests/          Agent tests (extract + loop)
+web/            Reseller chat UI + salesperson desk UI
+  index.html      Reseller chat (Hebrew RTL default, EN toggle)
+  desk.html       Salesperson desk
+data/           Mock price list, demo requests, submitted requests
+scripts/        smoke.js — in-process end-to-end smoke test
+docs/           Plan, architecture, task notes
+orchestrate/    watsonx Orchestrate tool + agent (see orchestrate/README.md)
+reference/      reference/sizer.js — production engine (do not edit)
+bob_sessions/   Screenshots of Bob task sessions (required for judging)
+```
 
-## 📋 Before Every Commit
+## Key rules
 
-Always run this checklist:
+- No real client data. All demo names are invented.
+- Prices shown are from `data/mock-pricelist.json` — **MOCK, demo only**.
+- API keys live in `.env` only; `.env` is git-ignored.
+- Nothing is sent to IBM or to a reseller without human approval (desk → Approve).
+- The reseller never sees a price.
 
-- [ ] Reviewed `git diff` for sensitive data
-- [ ] No hardcoded API keys or passwords
-- [ ] `.env` file is NOT in staged changes
-- [ ] No files with "credential" or "secret" in name
-- [ ] Used environment variables for all credentials
+## Scope
 
-## 🆘 Need Help?
+FlashSystem 5600 and 7600 only. Expert Care Basic or Advanced only.
+See `docs/PLAN.md` for the full architecture and task list.
 
-- Read [SECURITY.md](SECURITY.MD) for detailed guidelines
-- Contact hackathon support through mentor channel
-- Ask in the hackathon Slack workspace
+## Running with watsonx Orchestrate
 
----
+The `orchestrate/` directory contains a deployed agent (`blues_deal_desk`) running in
+IBM watsonx Orchestrate (IBM Cloud, ca-tor region). The agent uses the same sizing
+logic as the local app but runs fully in the cloud — no `localhost` required.
 
-**Remember:** Security is everyone's responsibility. When in doubt, ask for help!
+The **local app** (`server.js`, `agent/`, `web/`) continues to work without Orchestrate.
+The two modes are independent; you can use either.
+
+### Prerequisites (Orchestrate path)
+
+- Python ≥ 3.11 venv at repo root (already set up: `source venv/bin/activate`)
+- `orchestrate env activate hackathon` (IBM Cloud API key in `.env`)
+
+### Parity tests (before any import)
+
+```bash
+node scripts/make-golden.js                                          # regenerate golden cases
+PYTHONPATH=orchestrate python -m pytest orchestrate/tests/test_parity.py -v   # 44/44 must pass
+```
+
+### Import / update
+
+```bash
+source venv/bin/activate
+bash orchestrate/scripts/import-all.sh
+```
+
+### Chat with the deployed agent
+
+In Bob: _"Chat with `blues_deal_desk`: I need a FlashSystem with 40TB effective, FC 32Gb, Advanced 5Y."_
+
+Full details: [`orchestrate/README.md`](orchestrate/README.md)
+Test transcripts: [`docs/orchestrate-test-runs.md`](docs/orchestrate-test-runs.md)
+
