@@ -205,3 +205,14 @@ All companies and emails are invented (TEST).
 **Known issues (next step, see PATH_TO_PRODUCTION):**
 1. Website agent in English: the confirmation question before the lead appears in Hebrew.
 2. Internal agent in English: after `analyze_request`, the model showed only the closing question instead of the full display. In Hebrew it works.
+
+---
+
+## Run 6: recorded for the demo video (26.10.2026, 13:17–13:22, Live versions)
+
+All companies, people and emails are invented (TEST).
+
+- **Reseller agent (Hebrew, incomplete request).** Yossi from שרון סיסטמס asked for about 40TB effective with Advanced support for 5 years and did not mention connectivity. The agent asked one question, "FC או iSCSI?". After the answer (FC 32Gb, SAN switches already in place) it showed FlashSystem 5600 with 6 × 6.6TB FCM5, about 45TB effective, 8×32Gb FC and Expert Care Advanced for 5 years, with no price. On "שלח", `submit_request` returned **BD-2026-F150**.
+- **Website agent (Hebrew).** An accounting firm asked for 20TB and the price. The agent gave one sentence ("13.2TB נטו לפני דחיסה") with no price, collected the contact details, asked for confirmation, and after "כן" returned lead **BD-2026-6A9C**.
+- **Internal agent (Hebrew).** It analyzed the email from אלפא מחשוב (TEST). It found connectivity missing and drafted an email. MOCK pricing came to $51,260 + 8% = $55,361. It uploaded the request as **BD-2026-277D**.
+- **Desk.** All three requests appear on the desk page. BD-2026-F150 shows the recommendation, the e-config lines and the MOCK price.

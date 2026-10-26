@@ -1,16 +1,16 @@
-# Demo video script (final, 2:24)
+# Demo video script (final, 2:51)
 
-The video was produced without a live presenter: English AI voice-over (Kokoro, voice "Michael"), burned-in English subtitles, and real screenshots from the live test on 26.10.2026 (see `docs/orchestrate-test-runs.md`, Run 5). All companies, emails and prices are invented (TEST, MOCK).
+The video has no live presenter. It uses an English AI voice-over (Kokoro, voice "Michael") with burned-in English subtitles. The solution is shown in action for about 95 seconds, using frame-by-frame screen captures of live conversations with the three Live agents in IBM watsonx Orchestrate and of the live desk page, recorded on 26.10.2026 (see `docs/orchestrate-test-runs.md`, Run 6). All companies, emails and prices are invented (TEST, MOCK).
 
-| Time | On screen | Voice-over |
+| Time | On screen | Voice-over (summary) |
 |---|---|---|
-| 0:00–0:14 | Title, a reseller's loose request, "5 min expert work → hours waiting". | A reseller's customer needs IBM storage... An expert needs five minutes; the reseller waits hours. |
-| 0:14–0:24 | Why it is slow: incomplete, queued, after hours; deal registration. | Requests arrive incomplete, queue up, and wait for tomorrow. The first partner wins. |
-| 0:24–0:39 | Three agents → one deterministic engine → salesperson desk. | Three AI agents on watsonx Orchestrate around one engine. Language is the AI's job; correctness is the engine's. |
-| 0:39–0:55 | Reseller agent chat, then Show Reasoning with `submit_request` (BD-2026-C2F1). | The agent sizes a FlashSystem 5600, with no price, and places the request on the desk. |
-| 0:55–1:10 | Website agent: one-sentence suggestion, then lead BD-2026-F640. | No prices or codes; the lead is sent only after an explicit yes, checked inside the tool. |
-| 1:10–1:32 | Internal agent in Hebrew: analysis, draft email, MOCK pricing; upload BD-2026-3933. | Paste a reseller email, get configuration, alternative, items, a draft reply, and MOCK pricing with an 8% margin. |
-| 1:32–1:42 | The hidden desk page on bluesd.co.il with the new requests. | Nothing goes to IBM or to the reseller without a person. |
-| 1:42–2:00 | Built with IBM Bob: 12 tasks, ~60 Bobcoins, 44/44 parity, 250+ tests, Bob task summaries. | We built the whole project in IBM Bob. |
-| 2:00–2:18 | Business impact and next steps. | Minutes instead of hours; next, real IBM pricing behind approval, CRM and more product lines. |
-| 2:18–2:24 | Closing card. | Blues Deal Desk. Built with IBM Bob, by Blues Distribution. |
+| 0:00–0:12 | Title, a reseller's loose request, "5 min expert work → hours waiting". | The problem. |
+| 0:12–0:22 | Why it is slow: incomplete, queued, after hours; deal registration. | Why answers are slow. |
+| 0:22–0:36 | Three agents → one deterministic engine → salesperson desk. | Language is the AI's job; correctness is the engine's. |
+| 0:36–1:08 | **Live, reseller agent:** Hebrew request without connectivity → one clarifying question (FC or iSCSI) → FlashSystem 5600 sizing, no price → "שלח" → Show Reasoning with `submit_request` → BD-2026-F150. | The agent asks only what is missing; the reference comes from the tool. |
+| 1:08–1:29 | **Live, website agent:** accounting firm asks for 20TB and a price → one-sentence suggestion, no prices or codes → contact details → explicit "כן" → lead BD-2026-6A9C. | No prices; the lead is sent only after a yes checked in the tool. |
+| 1:29–1:55 | **Live, internal agent:** pasted reseller email → customer, configuration, alternative, items, quotes, assumptions, missing details, draft email → "כן" → MOCK pricing (8% margin) → "כן" → BD-2026-277D. | The sales team's view. |
+| 1:55–2:10 | **Live desk page** on bluesd.co.il: the three new requests, recommendation, e-config lines, MOCK price. | A person approves. |
+| 2:10–2:28 | IBM Bob IDE with the project and task list; 12 tasks, ~60 Bobcoins, 44/44 parity, 250+ tests; Bob task summaries. | Built with IBM Bob. |
+| 2:28–2:45 | Business impact and next steps. | Minutes instead of hours. |
+| 2:45–2:51 | Closing card with the repository link. | Blues Deal Desk. |
