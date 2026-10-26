@@ -36,6 +36,7 @@ This document explains how Blues Deal Desk moves from a hackathon demo to a tool
 ### Phase 4: More IBM lines
 The engine pattern (deterministic rules plus an AI intake) fits:
 
+- **FlashSystem 9600** and the full **Expert Care** range (Basic, Advanced and Premium for 3 or 5 years). Both were validated in IBM e-config on 25.10.2026 and need an engine update with new parity tests;
 - **IBM Power** servers;
 - **SAN** switches;
 - **tape** libraries;

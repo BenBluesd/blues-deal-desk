@@ -13,4 +13,11 @@ Screenshots of the IBM Bob task-session summaries for team **Blues Distribution*
 | `BluesDistribution_task07_language-endcustomer-fix_summary.png` | TASK-06: language enforced in the tool, end customer passed | 3.45 |
 | `BluesDistribution_task08_watsonx-model-eval_summary.png` | TASK-07: watsonx.ai chat API (Mistral Small) for the local agent, model evaluation doc | 3.45 |
 
-Total: about 40.1 Bobcoins.
+| `BluesDistribution_task09_hebrew-display_summary.png` | TASK-08: tools return ready-to-show Hebrew text, agent shows it verbatim | 2.98 |
+| `BluesDistribution_task10_site-advisor-agent_summary.png` | TASK-09: website agent for end customers, lead tool with confirmation checked in the tool | 5.02 |
+| `BluesDistribution_task11_internal-quote-agent_summary.png` | TASK-10: internal agent for the sales team, email analysis and MOCK pricing | 4.20 |
+| `BluesDistribution_task12_agent-fixes_summary.png` | Fixes from live tests: tool packaging in Orchestrate, lead API fields, Hebrew labels | 7.16 |
+
+Total: about 59.5 Bobcoins.
+
+**Note on edits outside Bob.** After TASK-08, to save Bobcoins, the team made a few small display fixes directly in the files, with no new logic: bidi trimming in `_isolate_ltr`, blank lines in `display`, filtering an internal engine note out of the reseller view, and two short instruction changes in `blues_deal_desk.yaml`. They are covered by the same tests.

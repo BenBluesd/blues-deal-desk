@@ -6,43 +6,43 @@
 
 Blues Distribution is Israel's largest official IBM distributor. When a reseller's customer needs IBM storage, the reseller comes to us. In IBM's deal-registration model, the first partner to register an opportunity gets the best price, so speed matters.
 
-Today a reseller sends a loose request by email or WhatsApp, such as "about 40TB, iSCSI, five years of support". A Blues expert turns it into an exact IBM FlashSystem configuration (model, drives, adapters, transceivers, support codes) and prices it.
+Today a reseller sends a loose request by email or WhatsApp, such as "about 40TB, iSCSI, five years of support". A Blues expert turns it into an exact IBM FlashSystem configuration and prices it.
 
 The configuration itself takes an expert about five minutes, yet the reseller waits hours for an answer:
 
 - **Most requests arrive incomplete**, so each one starts a round of questions.
-- **Requests queue up** behind other work for the few people who can configure them.
+- **Requests queue up** for the few people who can configure them.
 - **Requests sent after hours** wait for the next workday.
 
-The result: slow answers, risk of wrong feature codes, and resellers drifting to whoever answers first.
+The result: slow answers, wrong-code risk, and resellers drifting to whoever answers first.
 
 ## The solution
 
-Blues Deal Desk is an AI agent on **IBM watsonx Orchestrate** that answers resellers 24/7, in Hebrew or English.
+Blues Deal Desk is a set of three AI agents on **IBM watsonx Orchestrate**, in Hebrew or English, around one deterministic sizing engine: Blues' existing configuration engine, already live on our website, ported 1:1 to Python and checked by 44 parity tests.
 
-1. **The reseller chats with the agent.** It asks only for what is missing, then calls a deterministic sizing tool: Blues' existing configuration engine, already live on our website, ported 1:1 to Python and checked by 44 parity tests.
-2. **The reseller gets a clear recommendation and a reference number**: model, drives, capacity, connectivity and support. It contains no price.
-3. **A Blues salesperson reviews the request on a desk page.** The page shows the structured spec, the exact e-config feature lines, a "verify in e-config" checklist and a routine or needs-review route. The salesperson approves the request or asks the reseller a question. Nothing goes to IBM or to the reseller without a person.
+1. **Reseller agent (24/7).** It asks only for what is missing, sizes the system and returns a recommendation and a reference number, with no price.
+2. **Website agent for end customers.** It suggests a configuration in one sentence, collects company, contact, phone and email, and sends a lead only after an explicit "yes", checked inside the tool.
+3. **Internal agent for the sales team.** Paste a reseller's email and get the customer, a configuration and an alternative, items, quotes from the email, assumptions, what is missing and a draft reply. On "yes" it prices from a MOCK price list with an 8% margin.
 
-Language is the AI's job; correctness is the engine's job. The model never invents a feature code.
+Every request lands on a salesperson desk page with the exact e-config lines and a "verify in e-config" checklist. Nothing goes to IBM or to the reseller without a person.
+
+Language is the AI's job; correctness is the engine's. The model never invents a feature code.
 
 ## Built with IBM Bob
 
-We built the whole project in IBM Bob, in eight focused tasks, for about 40 Bobcoins (screenshots in `bob_sessions/`). It includes:
+We built the whole project in IBM Bob, in twelve focused tasks, for about 60 Bobcoins (screenshots in `bob_sessions/`). It includes:
 
 - a local demo with a reseller chat and a salesperson desk;
 - the Python engine port with parity tests;
-- the Orchestrate agent and its two tools;
+- three Orchestrate agents, with every check and calculation inside their tools;
 - a live API and a hidden desk page on our real website, `bluesd.co.il`.
-
-A request made in the Orchestrate chat appears on that desk page within about a minute.
 
 ## Business impact
 
-- **First answer in minutes instead of hours**, at any time, in the reseller's language.
-- **Fewer rounds of questions**: missing details are collected up front.
+- **First answer in minutes instead of hours**, at any time.
+- **Fewer rounds of questions.**
 - **Fewer errors**: feature codes come only from the verified engine.
-- **Expert time moves to complex deals**: routine requests arrive pre-configured.
+- **Expert time moves to complex deals.**
 - **Earlier deal registration**, which keeps resellers with Blues.
 
 ## Path to production

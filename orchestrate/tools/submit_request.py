@@ -4,13 +4,36 @@ orchestrate/tools/submit_request.py
 ADK Python tool: submit a completed FlashSystem sizing request to the Blues
 demo API (https://bluesd.co.il/api/bob-demo/requests).
 
-Returns { ref, route, headline } on success.
+Returns { ref, route, headline, display } on success.
 Never invents a reference number — only returns what the API gave back.
 """
 
 import requests as http_requests
 
 from ibm_watsonx_orchestrate.agent_builder.tools import tool
+
+try:
+    from tools.sizer import _isolate_ltr
+except ImportError:
+    import re as _re
+    _FSI = "\u2068"
+    _PDI = "\u2069"
+    _LTR_RUN = _re.compile(r"[A-Za-z0-9.,:/×x+\-()~ ]+")
+
+    def _isolate_ltr(text: str) -> str:  # type: ignore[misc]
+        def _replace(m: "_re.Match") -> str:
+            run = m.group(0)
+            alnum = [i for i, ch in enumerate(run) if ch.isascii() and ch.isalnum()]
+            if not alnum:
+                return run  # pure punctuation / spaces — leave alone
+            a, b = alnum[0], alnum[-1] + 1
+            # keep a bracket pair together; everything else (":", "-", spaces) stays outside
+            if run[a:b].count("(") > run[a:b].count(")") and b < len(run) and run[b] == ")":
+                b += 1
+            if run[a:b].count(")") > run[a:b].count("(") and a > 0 and run[a - 1] == "(":
+                a -= 1
+            return run[:a] + _FSI + run[a:b] + _PDI + run[b:]
+        return _LTR_RUN.sub(_replace, text)
 
 
 BLUES_API_URL = "https://bluesd.co.il/api/bob-demo/requests"
@@ -59,11 +82,12 @@ def submit_request(
         dict with keys:
             - ok           (bool)  True on success.
             - ref          (str)   Human-friendly request reference, e.g. "BD-2026-4821".
-                                   Show this to the user. Never invent one.
+                                   Never invent one.
             - route        (str)   "auto" | "review" | "custom".
             - headline     (str)   Short configuration headline in the user's language.
-            - end_customer (str)   Echo of the end_customer passed in (if any). Include
-                                   in the confirmation message shown to the reseller.
+            - display      (str)   Ready-to-show confirmation message in the user's
+                                   language. Show this verbatim — do not rephrase.
+            - end_customer (str)   Echo of the end_customer passed in (if any).
             - error        (str)   Error message (only present on failure).
     """
     payload: dict = {
@@ -102,11 +126,21 @@ def submit_request(
         err = data.get("error", f"HTTP {response.status_code}")
         return {"ok": False, "error": f"Submission failed: {err}"}
 
+    ref = data["ref"]
+    resolved_lang = lang if lang in ("he", "en") else "en"
+    if resolved_lang == "he":
+        display = _isolate_ltr(
+            f"הבקשה נשלחה לצוות של בלוז. מספר הבקשה: {ref}. איש מכירות יחזור אליכם עם הצעת מחיר."
+        )
+    else:
+        display = f"Your request was sent to the Blues team. Reference: {ref}. A Blues salesperson will reply with a quote."
+
     result: dict = {
         "ok": True,
-        "ref": data["ref"],
+        "ref": ref,
         "route": data.get("route", ""),
         "headline": data.get("headline", ""),
+        "display": display,
     }
     if end_customer:
         result["end_customer"] = end_customer

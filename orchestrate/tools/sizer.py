@@ -640,6 +640,40 @@ def _public_for_lang(public: dict, lang: str) -> dict:
     return result
 
 
+# FSI / PDI Unicode bidi-isolation marks
+_FSI = "\u2068"
+_PDI = "\u2069"
+
+# A "run" is a maximal sequence of ASCII letters, digits, and the punctuation
+# chars commonly found in storage spec strings, that contains at least one
+# Latin letter or digit.
+import re as _re
+_LTR_RUN = _re.compile(r"[A-Za-z0-9.,:/×x+\-()~ ]+")
+
+
+def _isolate_ltr(text: str) -> str:
+    """Wrap every LTR run in FSI…PDI bidi-isolation marks (Hebrew output only).
+
+    A run is a maximal sequence of [A-Za-z0-9.,:/×x+\\-()~ ] chars that
+    contains at least one Latin letter or digit. Leading/trailing spaces of the
+    run are trimmed outside the marks so Hebrew text stays flush.
+    """
+    def _replace(m: "_re.Match") -> str:
+        run = m.group(0)
+        alnum = [i for i, ch in enumerate(run) if ch.isascii() and ch.isalnum()]
+        if not alnum:
+            return run  # pure punctuation / spaces — leave alone
+        a, b = alnum[0], alnum[-1] + 1
+        # keep a bracket pair together; everything else (":", "-", spaces) stays outside
+        if run[a:b].count("(") > run[a:b].count(")") and b < len(run) and run[b] == ")":
+            b += 1
+        if run[a:b].count(")") > run[a:b].count("(") and a > 0 and run[a - 1] == "(":
+            a -= 1
+        return run[:a] + _FSI + run[a:b] + _PDI + run[b:]
+
+    return _LTR_RUN.sub(_replace, text)
+
+
 @tool(permission=ToolPermission.READ_ONLY)
 def size_flashsystem(spec: dict, ctx: dict, lang: str = "en") -> dict:
     """Size an IBM FlashSystem configuration based on a partial specification.
@@ -671,23 +705,98 @@ def size_flashsystem(spec: dict, ctx: dict, lang: str = "en") -> dict:
 
     Returns:
         dict: Full result with keys: engine, version, family, route, reasons,
-              questions, notes, verify, input, recommendation, econfig, public.
-              Use result["public"] to show the reseller-safe summary.
+              questions, notes, verify, input, recommendation, econfig, public,
+              display.
+              Use result["display"] to show the reseller a ready-to-display
+              Markdown string in the requested language — show it verbatim.
+              Use result["public"] for structured access to individual fields.
               Use result["questions"] to find the next clarifying question.
               Never show result["econfig"], result["verify"], or any price to the reseller.
-              result["public"] fields (headline, lines, disclaimer, questions) are
-              returned in the requested language only — no bilingual dicts.
 
     Args:
         spec (dict): Partial or complete sizing specification (see fields above).
         ctx (dict): Context about the reseller and deal (see fields above).
         lang (str): The language of the user's LATEST message: 'he' if it contains
             Hebrew letters, else 'en'. Controls the language of public.headline,
-            public.lines, public.disclaimer, and public.questions. Default 'en'.
+            public.lines, public.disclaimer, public.questions, and display.
+            Default 'en'.
     Returns:
         dict: Complete sizing result from the Blues engine.
     """
     resolved_lang = lang if lang in ("he", "en") else "en"
     result = size(spec, ctx)
     result["public"] = _public_for_lang(result.get("public"), resolved_lang)
+    result["display"] = _build_display(result, resolved_lang)
     return result
+
+
+def _build_display(result: dict, lang: str) -> str:
+    """Build a ready-to-show Markdown string from the sizing result.
+
+    Format:
+        **<headline>**
+        - <line 1>
+        - <line 2>
+        ...
+        <disclaimer>
+
+        <closing question>
+
+    For Hebrew output every LTR run is wrapped in FSI…PDI bidi-isolation marks.
+    """
+    pub   = result.get("public") or {}
+    route = result.get("route", "auto")
+
+    headline    = pub.get("headline", "")
+    lines       = pub.get("lines", []) or []
+    disclaimer  = pub.get("disclaimer", "")
+    # The assumption about effective capacity may appear once as a plain line
+    # if it is present in public.questions as a statement (no "?").
+    questions   = pub.get("questions", []) or []
+    # Only the compression assumption qualifies; other engine notes (for example the
+    # opportunity / ePricer note) are internal and must never reach the reseller.
+    assumption  = next((q for q in questions
+                        if q and not q.rstrip().endswith("?")
+                        and ("דחיס" in q or "compress" in q.lower())
+                        and "epricer" not in q.lower()), None)
+
+    if lang == "he":
+        if route in ("review", "custom"):
+            review_note = "הבקשה תעבור לבדיקה של צוות בלוז לפני הצעת מחיר."
+            closing = (
+                review_note + "\n"
+                "יש לכם מספר הזדמנות ב-\u2068IBM\u2069 (\u2068מתחיל ב-006\u2069)? "
+                "אם כן, כתבו אותו. אם לא, כתבו \"\u2068שלח\u2069\" ואעביר את הבקשה לצוות של בלוז."
+            )
+        else:
+            closing = (
+                "יש לכם מספר הזדמנות ב-\u2068IBM\u2069 (\u2068מתחיל ב-006\u2069)? "
+                "אם כן, כתבו אותו. אם לא, כתבו \"\u2068שלח\u2069\" ואעביר את הבקשה לצוות של בלוז."
+            )
+        iso = _isolate_ltr
+    else:
+        if route in ("review", "custom"):
+            review_note = "The Blues team will review this request before quoting."
+            closing = (
+                review_note + "\n"
+                'Do you have an IBM opportunity ID (starts with 006)? '
+                'If so, type it. If not, type "send" and I will pass the request to the Blues team.'
+            )
+        else:
+            closing = (
+                'Do you have an IBM opportunity ID (starts with 006)? '
+                'If so, type it. If not, type "send" and I will pass the request to the Blues team.'
+            )
+        iso = lambda s: s  # noqa: E731
+
+    parts = [f"**{iso(headline)}**", ""]
+    for line in lines:
+        parts.append(f"- {iso(line)}")
+    parts.append("")  # blank line ends the list, so the notes below are not glued to the last bullet
+    if assumption:
+        parts.append(iso(assumption))
+        parts.append("")
+    parts.append(iso(disclaimer))
+    parts.append("")
+    parts.append(iso(closing))
+    return "\n".join(parts)

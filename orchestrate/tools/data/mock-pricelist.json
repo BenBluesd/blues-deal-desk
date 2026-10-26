@@ -1,0 +1,106 @@
+{
+  "_label": "MOCK – demo only. All prices are invented round numbers for demonstration purposes. Do not use for real quotations.",
+  "_currency": "USD",
+  "_note": "Prices keyed by model MTM + drive bundle feature code, or by model MTM + drive-size + drive-count for non-bundle configurations.",
+
+  "base": {
+    "5127-A20": {
+      "_name": "FlashSystem 5600 base unit",
+      "list": 28000
+    },
+    "5075-A30": {
+      "_name": "FlashSystem 7600 base unit",
+      "list": 72000
+    }
+  },
+
+  "bundles": {
+    "ADK7": {
+      "_desc": "Value Bundle: 2 × 13.2TB FCM5 (FS5600)",
+      "list": 9000
+    },
+    "ADK9": {
+      "_desc": "Value Bundle: 6 × 6.6TB FCM5 (FS5600)",
+      "list": 14000
+    },
+    "ADK8": {
+      "_desc": "Value Bundle: 2 × 26.4TB FCM5 (FS5600)",
+      "list": 16000
+    }
+  },
+
+  "drives": {
+    "ADSJ": {
+      "_desc": "FCM5 6.6TB (FS5600, no bundle)",
+      "list": 2800
+    },
+    "ADSK": {
+      "_desc": "FCM5 13.2TB (FS5600, no bundle)",
+      "list": 5200
+    },
+    "ADSL": {
+      "_desc": "FCM5 26.4TB (FS5600, no bundle)",
+      "list": 9500
+    },
+    "ADSM": {
+      "_desc": "FCM5 52.8TB (FS5600, no bundle)",
+      "list": 18000
+    }
+  },
+
+  "connectivity": {
+    "ALB9": {
+      "_desc": "FC 32Gb adapter pair (8 ports, FS5600)",
+      "list": 4200
+    },
+    "ALB8": {
+      "_desc": "FC 64Gb adapter pair (FS5600)",
+      "list": 6500
+    },
+    "ALB6": {
+      "_desc": "25/10GbE iSCSI adapter pair (4 ports, FS5600)",
+      "list": 3500
+    },
+    "ACSR": {
+      "_desc": "OM3 FC cable 5m (per cable)",
+      "list": 120
+    }
+  },
+
+  "transceivers": {
+    "ACJ5": {
+      "_desc": "25GbE SW SFP28 transceiver (per unit = 2 ports)",
+      "list": 380
+    },
+    "ACJ6": {
+      "_desc": "10GbE SW SFP+ transceiver (per unit = 2 ports)",
+      "list": 260
+    },
+    "ACJC": {
+      "_desc": "10GbE SFP+ RJ45 transceiver (per unit = 2 ports)",
+      "list": 220
+    }
+  },
+
+  "expertCare": {
+    "ALK3": {
+      "_desc": "Expert Care Advanced 3Y (FS5600)",
+      "list": 5500
+    },
+    "ALK5": {
+      "_desc": "Expert Care Advanced 5Y (FS5600)",
+      "list": 8500
+    },
+    "ALJ5": {
+      "_desc": "Expert Care Basic 5Y (FS5600)",
+      "list": 4500
+    }
+  },
+
+  "shipping": {
+    "AKNC": {
+      "_desc": "Premium Shipping",
+      "list": 600
+    }
+  }
+}
