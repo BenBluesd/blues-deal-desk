@@ -1,20 +1,16 @@
-# Demo video script (target: 2:45, max 3:00)
+# Demo video script (final, 2:24)
 
-Record the screen with voice-over in English. Ben speaks. Use invented companies only.
+The video was produced without a live presenter: English AI voice-over (Kokoro, voice "Michael"), burned-in English subtitles, and real screenshots from the live test on 26.10.2026 (see `docs/orchestrate-test-runs.md`, Run 5). All companies, emails and prices are invented (TEST, MOCK).
 
-| Time | On screen | Voice-over (suggested) |
+| Time | On screen | Voice-over |
 |---|---|---|
-| 0:00–0:20 | Title card: "Blues Deal Desk". Then a WhatsApp-style loose request: "need ~40TB, FC, 5y support". | "I'm Ben from Blues Distribution, Israel's largest IBM distributor. A configuration takes our expert five minutes, but resellers wait hours: most requests arrive incomplete, they queue up, and evening requests wait for tomorrow." |
-| 0:20–0:35 | Simple diagram: reseller → Orchestrate agent → sizing engine → salesperson desk. | "Blues Deal Desk is an AI agent on watsonx Orchestrate. The AI handles the conversation. Our proven sizing engine handles the configuration, so it never invents a feature code." |
-| 0:35–1:20 | Orchestrate chat. Type the English request (Demo Reseller Ltd, 40TB effective, FC 32Gb, has SAN switches, Expert Care Advanced 5Y). Show the summary and the opportunity-ID question. Answer "No ID, please submit." Show reference BD-2026-… | "The reseller writes in plain English or Hebrew. The agent asks only for what's missing, sizes a FlashSystem 5600, and returns a reference. No price is shown. Pricing stays with Blues." |
-| 1:20–1:40 | Open Show Reasoning: the `size_flashsystem` and `submit_request` tool calls with their input and output. | "Under the hood: two tools. One sizes, one submits to our real website. The reference number comes from the server, not from the model." |
-| 1:40–2:05 | The hidden desk page on bluesd.co.il. The new request appears. Open it: spec, e-config lines, verify checklist, MOCK price, Approve. | "Seconds later the request lands on our salesperson desk, on our live website. It has exact e-config lines and a checklist. One click to approve. A human always signs off." |
-| 2:05–2:20 | Quick Hebrew message in the chat; the reply comes back in Hebrew. | "It works in Hebrew too, enforced in the tool itself." |
-| 2:20–2:40 | IBM Bob: the Tasks list with 7 tasks and their Bobcoin costs; a glimpse of tests passing. | "We built all of it in IBM Bob, in seven focused tasks and about 37 Bobcoins, including a 1:1 Python port of our engine checked by 44 parity tests." |
-| 2:40–2:55 | Closing card with the impact bullets and "Next: Power, SAN, tape, renewals". | "Minutes instead of hours, 24/7, with fewer errors. Next, we add IBM Power, SAN and tape. Thank you." |
-
-## Before recording
-- [ ] Reload the Orchestrate chat page for a clean conversation.
-- [ ] Open the desk page in a second tab. New requests appear there after about a minute, so record the desk part a little later or cut between the takes.
-- [ ] Hide bookmarks and notifications, and close other tabs.
-- [ ] Use only invented companies and emails.
+| 0:00–0:14 | Title, a reseller's loose request, "5 min expert work → hours waiting". | A reseller's customer needs IBM storage... An expert needs five minutes; the reseller waits hours. |
+| 0:14–0:24 | Why it is slow: incomplete, queued, after hours; deal registration. | Requests arrive incomplete, queue up, and wait for tomorrow. The first partner wins. |
+| 0:24–0:39 | Three agents → one deterministic engine → salesperson desk. | Three AI agents on watsonx Orchestrate around one engine. Language is the AI's job; correctness is the engine's. |
+| 0:39–0:55 | Reseller agent chat, then Show Reasoning with `submit_request` (BD-2026-C2F1). | The agent sizes a FlashSystem 5600, with no price, and places the request on the desk. |
+| 0:55–1:10 | Website agent: one-sentence suggestion, then lead BD-2026-F640. | No prices or codes; the lead is sent only after an explicit yes, checked inside the tool. |
+| 1:10–1:32 | Internal agent in Hebrew: analysis, draft email, MOCK pricing; upload BD-2026-3933. | Paste a reseller email, get configuration, alternative, items, a draft reply, and MOCK pricing with an 8% margin. |
+| 1:32–1:42 | The hidden desk page on bluesd.co.il with the new requests. | Nothing goes to IBM or to the reseller without a person. |
+| 1:42–2:00 | Built with IBM Bob: 12 tasks, ~60 Bobcoins, 44/44 parity, 250+ tests, Bob task summaries. | We built the whole project in IBM Bob. |
+| 2:00–2:18 | Business impact and next steps. | Minutes instead of hours; next, real IBM pricing behind approval, CRM and more product lines. |
+| 2:18–2:24 | Closing card. | Blues Deal Desk. Built with IBM Bob, by Blues Distribution. |

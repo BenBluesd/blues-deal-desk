@@ -187,3 +187,21 @@ Tested in the Orchestrate agent builder (Draft Preview), model GPT-OSS 120B via 
 **Hebrew test (first turn only, not submitted):** "שלום, אני מחברת דמו מערכות… 30TB אפקטיבי, iSCSI, Basic 3 שנים". The agent replied fully in Hebrew: FS5600, 2 × 13.2TB FCM5, 8×25GbE + SFP28, Basic 3Y. It asked once for an opportunity ID and did not re-ask for known details.
 
 Both Run 3 issues are fixed. TASK-06 cost about 3.45 Bobcoins.
+
+---
+
+## Run 5: three agents, final check (26.10.2026, Live versions)
+
+All companies and emails are invented (TEST).
+
+**Reseller agent (`blues_deal_desk`, English).** Dana from Negev Data: 40TB effective, FC 32Gb, has SAN switches, Expert Care Advanced 5Y. Reply: FlashSystem 5600 with 6 × 6.6TB FCM5, ~45TB effective, 8×32Gb FC, no price. On "send", `submit_request` returned **BD-2026-C2F1** (visible in Show Reasoning).
+
+**Website agent (`blues_site_advisor`, English).** Accounting firm, about 20TB. `suggest_storage` returned one sentence with usable capacity "before compression", no prices or codes. After the contact details and "yes", `create_customer_lead` returned **BD-2026-F640**.
+
+**Internal agent (`blues_quote_desk_internal`, Hebrew).** Pasted email from אלפא מחשוב (TEST), end customer מוסך השרון (TEST), 30TB effective, Advanced 5Y, no connectivity. `analyze_request` showed all fixed headings, the 7600 alternative, "מה חסר: סוג חיבור" and a draft email. On "כן", `price_quote` returned cost $51,260, margin 8%, sell $55,361 (checked: 51,260 × 1.08 = 55,360.8), labelled MOCK. On the second "כן" and an invented email, `submit_request` returned **BD-2026-3933**.
+
+**Desk.** All three references appear on the hidden desk page on bluesd.co.il, with source `orchestrate`.
+
+**Known issues (next step, see PATH_TO_PRODUCTION):**
+1. Website agent in English: the confirmation question before the lead appears in Hebrew.
+2. Internal agent in English: after `analyze_request`, the model showed only the closing question instead of the full display. In Hebrew it works.

@@ -14,6 +14,7 @@ This document explains how Blues Deal Desk moves from a hackathon demo to a tool
 ## Steps to production
 
 ### Phase 1: Internal pilot (2–4 weeks)
+0. Fix the two known English-language issues from the final live test (`docs/orchestrate-test-runs.md`, Run 5): the website agent's confirmation question and the internal agent's display in English.
 1. Deploy the agent in Orchestrate for Blues staff only. Salespeople paste real reseller requests into it and compare the result with what they would have built by hand.
 2. Track three numbers per request:
    - time to first answer;
